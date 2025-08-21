@@ -15,7 +15,7 @@ const endpoints = [
   '/',
   '/blog/',
   '/tools/',
-  '/services/',
+  
   '/feed.xml',
   '/sitemap.xml'
 ];

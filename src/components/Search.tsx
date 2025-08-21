@@ -119,15 +119,7 @@ export default function Search() {
                   <div className="text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">[ENTER]</div>
                 </div>
               </a>
-              <a href="/services" className="data-flow group block p-3 rounded-md hover:bg-accent/50 transition-all duration-300 border border-transparent hover:border-primary/20">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-medium text-sm group-hover:text-primary transition-colors">Services</div>
-                    <div className="text-xs text-muted-foreground">Professional investigation services</div>
-                  </div>
-                  <div className="text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">[ENTER]</div>
-                </div>
-              </a>
+              
             </div>
           </div>
         </div>

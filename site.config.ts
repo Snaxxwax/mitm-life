@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: 'MITM.life',
-  title: 'MITM.life - OSINT & Cybersecurity Research Blog',
-  description: 'Professional OSINT research, cybersecurity insights, and ethical hacking methodologies. Expert analysis of digital investigations and security trends.',
+  title: 'MITM.life - Red Team Education & Research Platform',
+  description: 'Advanced red team methodologies, man-in-the-middle attack research, and ethical hacking education for cybersecurity professionals worldwide.',
   url: 'https://mitm.life',
-  author: 'MITM Team',
-  keywords: ['OSINT', 'cybersecurity', 'digital investigations', 'ethical hacking', 'security research'],
+  author: 'MITM Research Team',
+  keywords: ['red team', 'man-in-the-middle', 'MITM attacks', 'penetration testing', 'ethical hacking', 'cybersecurity education', 'network security'],
   
   social: {
     twitter: '@mitmlife',
@@ -17,13 +17,14 @@ export const siteConfig = {
     },
   },
   
-  monetization: {
+  education: {
     affiliates: {
-      disclaimer: 'This site contains affiliate links. We may earn a commission when you make a purchase.',
+      disclaimer: 'Educational platform supporting security research through tool recommendations and resources.',
     },
-    services: {
-      consulting: true,
-      training: true,
+    mission: {
+      ethical: true,
+      educational: true,
+      research: true,
     },
   },
   

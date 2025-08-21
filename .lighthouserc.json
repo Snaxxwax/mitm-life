@@ -5,7 +5,7 @@
         "http://localhost:3000/",
         "http://localhost:3000/blog/",
         "http://localhost:3000/tools/",
-        "http://localhost:3000/services/"
+        
       ],
       "numberOfRuns": 3
     },

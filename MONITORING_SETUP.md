@@ -40,8 +40,7 @@
    // Track affiliate link clicks
    plausible('Affiliate Click', {props: {tool: 'vpn-service'}})
    
-   // Track service inquiries
-   plausible('Service Inquiry', {props: {plan: 'basic-scan'}})
+   
    
    // Track legal page views
    plausible('Legal Page View', {props: {page: 'privacy-policy'}})
@@ -342,11 +341,7 @@
 
 #### Plausible Goals:
 
-1. **Service Page Views**
-   ```
-   Goal: Visit /services
-   Type: Page view
-   ```
+
 
 2. **Affiliate Link Clicks**
    ```
@@ -377,15 +372,7 @@ document.addEventListener('click', (event) => {
   }
 });
 
-// Track service inquiries
-function trackServiceInquiry(serviceName) {
-  plausible('Service Inquiry', {
-    props: {
-      service: serviceName,
-      timestamp: new Date().toISOString()
-    }
-  });
-}
+
 ```
 
 ---

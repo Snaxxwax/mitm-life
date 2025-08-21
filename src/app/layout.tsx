@@ -78,12 +78,7 @@ export default function RootLayout({
                   >
                     Tools
                   </a>
-                  <a
-                    href="/services"
-                    className="trust-badge inline-flex items-center px-3 py-1.5 text-sm font-medium bg-primary/10 text-primary rounded-lg border border-primary/20 transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:scale-105 focus-ring"
-                  >
-                    Services
-                  </a>
+                  
                   <a
                     href="/about"
                     className="text-sm font-medium transition-all duration-200 hover:text-primary hover:scale-105 focus-ring rounded-md px-2 py-1"
@@ -107,9 +102,7 @@ export default function RootLayout({
                       {siteConfig.name}
                     </span>
                   </div>
-                  <p className="text-muted-foreground text-sm mb-4 max-w-md">
-                    Professional OSINT research and cybersecurity intelligence services. Trusted by 500+ security professionals worldwide.
-                  </p>
+                  
                   <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <div className="status-indicator w-2 h-2 rounded-full bg-green-400"></div>
@@ -117,14 +110,7 @@ export default function RootLayout({
                     </div>
                   </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold mb-4 text-foreground">Services</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li><a href="/services" className="hover:text-primary transition-colors">OSINT Research</a></li>
-                    <li><a href="/services" className="hover:text-primary transition-colors">Threat Intelligence</a></li>
-                    <li><a href="/services" className="hover:text-primary transition-colors">Custom Investigations</a></li>
-                  </ul>
-                </div>
+                
                 <div>
                   <h3 className="font-semibold mb-4 text-foreground">Resources</h3>
                   <ul className="space-y-2 text-sm text-muted-foreground">

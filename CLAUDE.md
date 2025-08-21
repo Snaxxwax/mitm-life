@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is **mitm.life** - a static blog focused on OSINT (Open Source Intelligence) and cybersecurity research built with Next.js, Contentlayer, and TailwindCSS. The project has two main monetization surfaces: productized OSINT services (/services) and an affiliate tool hub (/tools).
+This is **mitm.life** - a static blog focused on OSINT (Open Source Intelligence) and cybersecurity research built with Next.js, Contentlayer, and TailwindCSS. The project has one main monetization surface: an affiliate tool hub (/tools).
 
 ## Development Commands
 
@@ -46,12 +46,11 @@ pnpm new:post "Title" --slug  # Create new post
 - **Posts**: `/content/posts/*.mdx` - Blog posts with rich frontmatter
 - **Pages**: `/content/pages/*.mdx` - Static pages (About, Contact, etc.)
 - **Authors**: `/content/authors/*.yml` - Author metadata
-- **Services**: `/data/services.yml` - OSINT service definitions
+
 - **Tools**: `/data/tools.yml` - Affiliate tool definitions
 
 ### Key Components
-- `PricingTable` - Service tier pricing display with Stripe/LemonSqueezy integration
-- `CheckoutButton` - Payment processing component
+
 - `AffiliateCard` - Tool display cards
 - `GoRedirect` - Cloaked affiliate redirect handler
 - `LegalDisclosure` - Compliance and disclaimer component
@@ -62,7 +61,7 @@ pnpm new:post "Title" --slug  # Create new post
 - `/guides` - How-to content and playbooks
 - `/notes` - Short field notes
 - `/tools` - Affiliate hub with filtering
-- `/services` - Productized OSINT offerings
+
 - `/go/[slug]` - Cloaked affiliate redirects (noindex)
 - `/tags/[tag]` - Tag taxonomy pages
 - `/categories/[category]` - Category taxonomy pages
