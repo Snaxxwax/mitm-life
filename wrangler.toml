@@ -1,0 +1,5 @@
+name = "mitm-life-static"
+compatibility_date = "2025-08-22"
+
+[site]
+bucket = "./out"
