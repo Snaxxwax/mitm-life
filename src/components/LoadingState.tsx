@@ -9,6 +9,33 @@ interface LoadingStateProps {
   className?: string
 }
 
+const steps = {
+  scanning: [
+    'Initializing scan protocols...',
+    'Gathering intelligence data...',
+    'Analyzing threat vectors...',
+    'Compiling security report...'
+  ],
+  processing: [
+    'Processing request...',
+    'Validating parameters...',
+    'Executing analysis...',
+    'Generating results...'
+  ],
+  analyzing: [
+    'Analyzing data patterns...',
+    'Cross-referencing sources...',
+    'Validating findings...',
+    'Preparing insights...'
+  ],
+  connecting: [
+    'Establishing secure connection...',
+    'Authenticating credentials...',
+    'Synchronizing data...',
+    'Connection established...'
+  ]
+}
+
 export default function LoadingState({ 
   message = 'Processing request',
   type = 'processing',
@@ -17,33 +44,6 @@ export default function LoadingState({
 }: LoadingStateProps) {
   const [currentStep, setCurrentStep] = useState(0)
   const [dots, setDots] = useState('')
-
-  const steps = {
-    scanning: [
-      'Initializing scan protocols...',
-      'Gathering intelligence data...',
-      'Analyzing threat vectors...',
-      'Compiling security report...'
-    ],
-    processing: [
-      'Processing request...',
-      'Validating parameters...',
-      'Executing analysis...',
-      'Generating results...'
-    ],
-    analyzing: [
-      'Analyzing data patterns...',
-      'Cross-referencing sources...',
-      'Validating findings...',
-      'Preparing insights...'
-    ],
-    connecting: [
-      'Establishing secure connection...',
-      'Authenticating credentials...',
-      'Synchronizing data...',
-      'Connection established...'
-    ]
-  }
 
   useEffect(() => {
     const stepInterval = setInterval(() => {
@@ -61,7 +61,7 @@ export default function LoadingState({
       clearInterval(stepInterval)
       clearInterval(dotInterval)
     }
-  }, [type, duration, steps])
+  }, [type, duration])
 
   return (
     <div className={`flex flex-col items-center space-y-4 ${className}`}>

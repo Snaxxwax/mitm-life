@@ -94,7 +94,7 @@ export default function Search() {
 
       {/* Enhanced Search Results Dropdown */}
       {isOpen && query && (
-        <div className="glass-card-enhanced absolute top-full left-0 right-0 mt-2 bg-card/95 border border-border rounded-lg shadow-xl backdrop-blur-md z-50 overflow-hidden">
+        <div className="glass-card-enhanced absolute top-full left-0 right-0 mt-2 bg-card/95 border border-border rounded-lg shadow-xl backdrop-blur-md z-[110] overflow-hidden">
           <div className="scan-effect p-4">
             <div className="text-sm text-muted-foreground mb-3 font-mono">
               <span className="text-primary">&gt;</span> Searching for &quot;{query}&quot;

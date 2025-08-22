@@ -1,73 +1,75 @@
-import { siteConfig } from '../../site.config';
-import MatrixRain from '../components/MatrixRain';
+'use client'
+
+import { siteConfig } from '../../site.config'
 
 export default function HomePage() {
+  const techniques = [
+    {
+      title: 'Advanced OSINT Techniques',
+      description: 'Master social media intelligence gathering and digital footprint analysis',
+      category: 'Intelligence',
+      readTime: '5 min read',
+      url: '/blog/social-media-osint',
+    },
+    {
+      title: 'Domain Investigation Methods',
+      description: 'Comprehensive domain and infrastructure reconnaissance methodologies',
+      category: 'Reconnaissance',
+      readTime: '8 min read',
+      url: '/blog/domain-investigation',
+    },
+    {
+      title: 'Essential Red Team Arsenal',
+      description: 'Updated toolkit for modern cybersecurity professionals',
+      category: 'Tools',
+      readTime: '6 min read',
+      url: '/blog/osint-tools-2025',
+    },
+  ]
+
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center matrix-bg">
-        <MatrixRain density={0.5} speed={0.8} />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="mx-auto max-w-5xl text-center">
-            <h1 className="mb-8 text-hero font-bold tracking-tight">
-              Red Team Engagements &{' '}
-              <span className="gradient-text">
-                Cybersecurity
-              </span>{' '}
-              Research
-            </h1>
-            <p className="mx-auto mb-10 max-w-2xl text-xl text-muted-foreground leading-relaxed">
-              {siteConfig.description}
-            </p>
-            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <a
-                href="/blog"
-                className="cyber-button-enhanced inline-flex h-14 items-center justify-center rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground shadow-lg focus-ring"
-              >
-                Explore Research
-              </a>
-              <a
-                href="/tools"
-                className="cyber-button-enhanced inline-flex h-14 items-center justify-center rounded-xl border border-primary bg-background/50 backdrop-blur-sm px-8 text-base font-semibold text-primary shadow-lg hover:bg-primary hover:text-primary-foreground focus-ring"
-              >
-                Explore Tools
-              </a>
-            </div>
+    <>
+      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+        <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
+          <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
+            {siteConfig.name}
+          </h1>
+          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+            {siteConfig.description}
+          </p>
+          <div className="space-x-4">
+            <a href="/blog" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+              Explore Research
+            </a>
+            <a href="/tools" className="inline-flex items-center justify-center rounded-md border border-input bg-transparent px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+              Explore Tools
+            </a>
           </div>
         </div>
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background pointer-events-none"></div>
       </section>
-
-      {/* Latest Blog Posts */}
-      <section className="mx-auto mt-16 max-w-6xl">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold">Latest Research & Insights</h2>
-          <a href="/blog" className="text-primary hover:underline">View all posts →</a>
+      <section id="features" className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24">
+        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+          <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Latest Research & Insights</h2>
+          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+            Explore the latest techniques and methodologies in cybersecurity research.
+          </p>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          <article className="rounded-lg border p-6 hover:shadow-lg transition-shadow">
-            <div className="text-sm text-muted-foreground mb-2">OSINT • 5 min read</div>
-            <h3 className="text-lg font-semibold mb-2">Advanced Social Media OSINT Techniques</h3>
-            <p className="text-muted-foreground text-sm mb-4">Discover professional methodologies for ethical social media intelligence gathering...</p>
-            <a href="/blog/social-media-osint" className="text-primary text-sm hover:underline">Read more →</a>
-          </article>
-          
-          <article className="rounded-lg border p-6 hover:shadow-lg transition-shadow">
-            <div className="text-sm text-muted-foreground mb-2">Security • 8 min read</div>
-            <h3 className="text-lg font-semibold mb-2">Domain Investigation Methodologies</h3>
-            <p className="text-muted-foreground text-sm mb-4">Comprehensive guide to investigating domains, subdomains, and digital infrastructure...</p>
-            <a href="/blog/domain-investigation" className="text-primary text-sm hover:underline">Read more →</a>
-          </article>
-          
-          <article className="rounded-lg border p-6 hover:shadow-lg transition-shadow">
-            <div className="text-sm text-muted-foreground mb-2">Tools • 6 min read</div>
-            <h3 className="text-lg font-semibold mb-2">Essential OSINT Tools for 2025</h3>
-            <p className="text-muted-foreground text-sm mb-4">Updated toolkit for modern cybersecurity professionals and researchers...</p>
-            <a href="/blog/osint-tools-2025" className="text-primary text-sm hover:underline">Read more →</a>
-          </article>
+        <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+          {techniques.map((technique, index) => (
+            <div key={index} className="relative overflow-hidden rounded-lg border bg-background p-2">
+              <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
+                <div className="space-y-2">
+                  <h3 className="font-bold">{technique.title}</h3>
+                  <p className="text-sm text-muted-foreground">{technique.description}</p>
+                </div>
+                <a href={technique.url} className="text-sm font-medium text-primary hover:underline">
+                  Read more
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
-    </div>
-  );
+    </>
+  )
 }

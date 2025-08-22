@@ -1,4 +1,5 @@
 import { useState, useCallback, memo } from 'react';
+import Image from 'next/image';
 
 interface LazyImageProps {
   src: string;
@@ -42,14 +43,15 @@ export const LazyImage = memo(function LazyImage({
   return (
     <div className={`relative overflow-hidden ${className}`}>
       {!isLoaded && (
-        <img
+        <Image
           src={placeholder}
           alt=""
+          width={width}
+          height={height}
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ width, height }}
         />
       )}
-      <img
+      <Image
         src={src}
         alt={alt}
         width={width}
@@ -60,7 +62,6 @@ export const LazyImage = memo(function LazyImage({
         onLoad={handleLoad}
         onError={handleError}
         loading="lazy"
-        decoding="async"
       />
     </div>
   );

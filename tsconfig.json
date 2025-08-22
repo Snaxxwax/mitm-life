@@ -33,12 +33,14 @@
   },
   "include": [
     "next-env.d.ts",
+    "jest.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     "out/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "mitm-life-static"
   ]
 }
