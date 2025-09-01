@@ -1,0 +1,144 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Tools & Scripts - ${SITE_TITLE}`} description="Cybersecurity tools, scripts, and utilities for penetration testing, threat hunting, and security analysis." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<h1>Tools & Scripts</h1>
+				<p>Cybersecurity tools, scripts, and utilities for penetration testing, threat hunting, and security analysis.</p>
+			</section>
+			
+			<section class="content">
+				<div class="tools-grid">
+					<article class="tool-card">
+						<h3>Network Scanners</h3>
+						<p>Advanced network discovery and port scanning tools for reconnaissance and vulnerability assessment.</p>
+						<div class="tags">
+							<span class="tag">Nmap</span>
+							<span class="tag">Masscan</span>
+							<span class="tag">Zmap</span>
+						</div>
+					</article>
+					
+					<article class="tool-card">
+						<h3>Web Application Testing</h3>
+						<p>Comprehensive web application security testing tools and automated vulnerability scanners.</p>
+						<div class="tags">
+							<span class="tag">Burp Suite</span>
+							<span class="tag">OWASP ZAP</span>
+							<span class="tag">SQLmap</span>
+						</div>
+					</article>
+					
+					<article class="tool-card">
+						<h3>Forensics & Analysis</h3>
+						<p>Digital forensics tools for incident response, malware analysis, and evidence collection.</p>
+						<div class="tags">
+							<span class="tag">Volatility</span>
+							<span class="tag">Autopsy</span>
+							<span class="tag">Wireshark</span>
+						</div>
+					</article>
+					
+					<article class="tool-card">
+						<h3>Custom Scripts</h3>
+						<p>Purpose-built scripts and automation tools for specific cybersecurity tasks and workflows.</p>
+						<div class="tags">
+							<span class="tag">Python</span>
+							<span class="tag">PowerShell</span>
+							<span class="tag">Bash</span>
+						</div>
+					</article>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.hero {
+		text-align: center;
+		padding: 4rem 1rem 2rem;
+		background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+		color: white;
+	}
+	
+	.hero h1 {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+		color: #00ff88;
+	}
+	
+	.hero p {
+		font-size: 1.2rem;
+		max-width: 600px;
+		margin: 0 auto;
+		opacity: 0.9;
+	}
+	
+	.content {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 4rem 1rem;
+	}
+	
+	.tools-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	
+	.tool-card {
+		background: white;
+		border-radius: 12px;
+		padding: 2rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		border: 1px solid #e0e0e0;
+		transition: all 0.3s ease;
+	}
+	
+	.tool-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+		border-color: #00ff88;
+	}
+	
+	.tool-card h3 {
+		color: #1a1a2e;
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
+	}
+	
+	.tool-card p {
+		color: #666;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+	
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	
+	.tag {
+		background: #f0f8ff;
+		color: #1a1a2e;
+		padding: 0.3rem 0.8rem;
+		border-radius: 20px;
+		font-size: 0.9rem;
+		border: 1px solid #00ff88;
+	}
+</style>
+

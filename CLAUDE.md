@@ -2,106 +2,51 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
-
-This is **mitm.life** - a static blog focused on OSINT (Open Source Intelligence) and cybersecurity research built with Next.js, Contentlayer, and TailwindCSS. The project has one main monetization surface: an affiliate tool hub (/tools).
-
-## Development Commands
-
-### Setup & Installation
-```bash
-pnpm install
-```
+## Commands
 
 ### Development
-```bash
-pnpm dev                    # Start development server
-```
+- `npm run dev` - Start the development server at http://localhost:4321
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run check` - Run Astro type checking
 
-### Build & Export
-```bash
-pnpm build                  # Build the application
-pnpm export                 # Export static files
-pnpm typecheck             # Run TypeScript type checking
-pnpm lint                  # Run ESLint
-```
+## Architecture
 
-### Content Management
-```bash
-pnpm feeds:generate        # Generate RSS/Atom/JSON feeds
-pnpm new:post "Title" --slug  # Create new post
-```
+This is a cybersecurity blog built with Astro, featuring seamless Obsidian integration for content management.
 
-## Project Architecture
+### Core Structure
+- **Content-first Astro site** with SSG for optimal performance
+- **Obsidian integration** via `astro-loader-obsidian` with real-time sync
+- **Content collections** system using Astro's typed content API
+- **React components** integrated within Astro pages for interactivity
 
-### Core Technologies
-- **Next.js 14+** with App Router for static site generation
-- **Contentlayer** for MDX content management and type safety
-- **TailwindCSS + shadcn/ui** for styling
-- **TypeScript** in strict mode
-- **Pagefind** for static search functionality
-- **Shiki** for code syntax highlighting
+### Content System
+Content is managed directly in the Obsidian vault:
+- **Obsidian Vault** (`obsidian-vault/`) - Primary content authoring with real-time sync
+- **Real-time updates** - Changes automatically reflected in development server
+- **Automatic link resolution** - `[[wiki-links]]` and `![[embeds]]` work seamlessly
 
-### Content Structure
-- **Posts**: `/content/posts/*.mdx` - Blog posts with rich frontmatter
-- **Pages**: `/content/pages/*.mdx` - Static pages (About, Contact, etc.)
-- **Authors**: `/content/authors/*.yml` - Author metadata
-
-- **Tools**: `/data/tools.yml` - Affiliate tool definitions
+Content categories are defined in four collections:
+- `tools/` - Security tools and scripts  
+- `guides/` - Step-by-step tutorials
+- `research/` - Original research and analysis
+- `resources/` - Curated reference materials
 
 ### Key Components
+- **Header.tsx** - React-based navigation with mobile sheet menu
+- **Content Collections** - Type-safe frontmatter schema in `content.config.ts`
+- **Sync Script** - Automated content synchronization with frontmatter processing
+- **Tailwind Config** - Cybersecurity-themed dark color scheme
 
-- `AffiliateCard` - Tool display cards
-- `GoRedirect` - Cloaked affiliate redirect handler
-- `LegalDisclosure` - Compliance and disclaimer component
+### Site Configuration
+- Site constants in `src/consts.ts` (title, navigation, URLs)
+- Astro config in `astro.config.mjs` (integrations: MDX, React, Tailwind, Sitemap)
+- Content schema validation ensures consistent metadata across all content
 
-### Routing Structure
-- `/` - Homepage with latest posts and search
-- `/research` - Long-form OSINT analyses
-- `/guides` - How-to content and playbooks
-- `/notes` - Short field notes
-- `/tools` - Affiliate hub with filtering
+### Content Workflow
+1. Write content directly in Obsidian vault using category folders
+2. Add frontmatter with required fields (title, description, pubDate, category, tags)
+3. Changes automatically sync to development server in real-time
+4. Astro builds static site with type-safe content collections
 
-- `/go/[slug]` - Cloaked affiliate redirects (noindex)
-- `/tags/[tag]` - Tag taxonomy pages
-- `/categories/[category]` - Category taxonomy pages
-
-### Configuration Files
-- `site.config.ts` - Site metadata, analytics, payment providers, affiliate settings
-- `contentlayer.config.ts` - Content schema definitions
-- `next.config.mjs` - Next.js configuration for static export
-- `tsconfig.json` - TypeScript configuration with strict mode
-
-### Monetization Integration
-- **Payment providers**: Stripe and LemonSqueezy support
-- **Webhook integration**: N8N webhook for order processing
-- **Affiliate tracking**: UTM parameter injection and click tracking
-- **Test mode**: Configurable via NEXT_PUBLIC_PAYMENTS_TEST_MODE
-
-### Security & SEO Features
-- CSP headers via next-safe
-- Structured data (Article, BreadcrumbList, WebSite)
-- Social OG images via @vercel/og
-- RSS/Atom/JSON feeds
-- Sitemap and robots.txt generation
-- Privacy-first analytics (Plausible/Umami)
-
-### Content Features
-- MDX shortcodes: Callout, YouTube, Mermaid, Figure, Source
-- Reading time calculation
-- Table of contents generation
-- Dark theme with toggle
-- Comment system via Giscus
-- Footnote support
-- Anchor links for headings
-
-## Development Notes
-
-### File Organization
-The project uses a flat structure in the mitm/ directory with components, configuration, and content management files at the root level. TypeScript path mapping is configured with `@/*` pointing to `./src/*`.
-
-### Static Export Only
-This project is configured for static export only and deploys to Cloudflare Pages. All features must work without server-side runtime.
-
-### Environment Variables
-Key environment variables are documented in the project. Check `site.config.ts` for runtime configuration and ensure `.env` file contains necessary API keys for payment processing and webhooks.
+The `astro-loader-obsidian` handles automatic content loading and link resolution, ensuring all Obsidian-style links and embeds work seamlessly in the generated site.
