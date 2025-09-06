@@ -46,12 +46,14 @@ mitm-life-blog/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd mitm-life-blog
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
@@ -85,11 +87,11 @@ You can also create content directly in the `src/content/` directories:
 
 ```markdown
 ---
-title: "Your Content Title"
-description: "Brief description of the content"
-pubDate: "2025-08-27"
-category: "tools"
-tags: ["cybersecurity", "tools", "pentesting"]
+title: 'Your Content Title'
+description: 'Brief description of the content'
+pubDate: '2025-08-27'
+category: 'tools'
+tags: ['cybersecurity', 'tools', 'pentesting']
 ---
 
 Your content here...
@@ -129,6 +131,7 @@ npm run preview
 ### GitHub Setup
 
 1. **Initialize Git repository**
+
    ```bash
    git init
    git add .
@@ -171,6 +174,7 @@ npm run preview
 ### Site Configuration
 
 Edit `src/consts.ts` to customize:
+
 - Site title and description
 - Navigation categories
 - Social media links
@@ -194,13 +198,13 @@ Edit `src/consts.ts` to customize:
 
 ```markdown
 ---
-title: "Descriptive Title"
-description: "SEO-friendly description (150-160 characters)"
-pubDate: "2025-08-27"
-category: "tools" # tools, guides, research, resources
-tags: ["cybersecurity", "pentesting", "tools"]
-difficulty: "intermediate" # beginner, intermediate, advanced
-author: "Your Name"
+title: 'Descriptive Title'
+description: 'SEO-friendly description (150-160 characters)'
+pubDate: '2025-08-27'
+category: 'tools' # tools, guides, research, resources
+tags: ['cybersecurity', 'pentesting', 'tools']
+difficulty: 'intermediate' # beginner, intermediate, advanced
+author: 'Your Name'
 ---
 ```
 

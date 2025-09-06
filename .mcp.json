@@ -1,68 +1,60 @@
 {
-    "mcpServers": {
-      "github": {
-        "type": "stdio",
-        "command": "npx",
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-github"
-        ],
-        "env": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "GITHUB_PERSONAL_ACCESS_TOKEN"
-        }
-      },
-      "huggingface": {
-        "type": "stdio",
-        "command": "npx",
-        "args": [
-          "-y",
-          "@huggingface/mcp-server"
-        ],
-        "env": {
-          "HF_TOKEN": "HF_TOKEN"
-        }
-      },
-      "gl-inet-router": {
-        "type": "stdio",
-        "command": "node",
-        "args": [
-          "./gl-inet-mcp/dist/index.js"
-        ],
-        "env": {
-          "GLINET_HOST": "GLINET_HOST",
-          "GLINET_USERNAME": "GLINET_USERNAME",
-          "GLINET_PASSWORD": "GLINET_PASSWORD"
-        }
-      },
-      "cloudflare-audit-logs": {
-        "type": "sse",
-        "url": "https://auditlogs.mcp.cloudflare.com/sse",
-        "description": "Query audit logs and generate security reports"
-      },
-      "cloudflare-casb": {
-        "type": "sse", 
-        "url": "https://cloudflare-one-casb.mcp.cloudflare.com/sse",
-        "description": "Discover security misconfigurations in SaaS applications"
-      },
-      "cloudflare-radar": {
-        "type": "sse",
-        "url": "https://radar.mcp.cloudflare.com/sse", 
-        "description": "Access threat intelligence and HTTP traffic data"
-      },
-      "cloudflare-dns-analytics": {
-        "type": "sse",
-        "url": "https://dns-analytics.mcp.cloudflare.com/sse",
-        "description": "Monitor DNS security and performance"
-      },
-      "cloudflare-observability": {
-        "type": "sse",
-        "url": "https://observability.mcp.cloudflare.com/sse",
-        "description": "Debug logs and monitor application performance"
-      },
-      "cloudflare-docs": {
-        "type": "sse",
-        "url": "https://docs.mcp.cloudflare.com/sse",
-        "description": "Search Cloudflare documentation and references"
+  "mcpServers": {
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "GITHUB_PERSONAL_ACCESS_TOKEN"
       }
+    },
+    "huggingface": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@huggingface/mcp-server"],
+      "env": {
+        "HF_TOKEN": "HF_TOKEN"
+      }
+    },
+    "gl-inet-router": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["./gl-inet-mcp/dist/index.js"],
+      "env": {
+        "GLINET_HOST": "GLINET_HOST",
+        "GLINET_USERNAME": "GLINET_USERNAME",
+        "GLINET_PASSWORD": "GLINET_PASSWORD"
+      }
+    },
+    "cloudflare-audit-logs": {
+      "type": "sse",
+      "url": "https://auditlogs.mcp.cloudflare.com/sse",
+      "description": "Query audit logs and generate security reports"
+    },
+    "cloudflare-casb": {
+      "type": "sse",
+      "url": "https://cloudflare-one-casb.mcp.cloudflare.com/sse",
+      "description": "Discover security misconfigurations in SaaS applications"
+    },
+    "cloudflare-radar": {
+      "type": "sse",
+      "url": "https://radar.mcp.cloudflare.com/sse",
+      "description": "Access threat intelligence and HTTP traffic data"
+    },
+    "cloudflare-dns-analytics": {
+      "type": "sse",
+      "url": "https://dns-analytics.mcp.cloudflare.com/sse",
+      "description": "Monitor DNS security and performance"
+    },
+    "cloudflare-observability": {
+      "type": "sse",
+      "url": "https://observability.mcp.cloudflare.com/sse",
+      "description": "Debug logs and monitor application performance"
+    },
+    "cloudflare-docs": {
+      "type": "sse",
+      "url": "https://docs.mcp.cloudflare.com/sse",
+      "description": "Search Cloudflare documentation and references"
     }
   }
+}

@@ -24,7 +24,7 @@
       "@/styles/*": ["./src/styles/*"],
       "@/types/*": ["./src/types/*"]
     },
-    
+
     // Strict type checking options
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -36,7 +36,7 @@
     "exactOptionalPropertyTypes": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    
+
     // Additional strict options
     "strictNullChecks": true,
     "strictFunctionTypes": true,
@@ -47,8 +47,9 @@
   "include": [
     "src/**/*",
     "astro.config.mjs",
-    ".astro/types.d.ts"
-, "peaceful-pulsar/BlogCard.test.tsx"  ],
+    ".astro/types.d.ts",
+    "peaceful-pulsar/BlogCard.test.tsx"
+  ],
   "exclude": [
     "node_modules",
     "dist",

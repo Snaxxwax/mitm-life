@@ -1,12 +1,12 @@
 ---
-title: "WiFi Security Fundamentals: Understanding Wireless Network Protection"
-description: "Learn the essential concepts of WiFi security protocols, encryption methods, and common vulnerabilities in wireless networks"
+title: 'WiFi Security Fundamentals: Understanding Wireless Network Protection'
+description: 'Learn the essential concepts of WiFi security protocols, encryption methods, and common vulnerabilities in wireless networks'
 pubDate: 2025-09-03
-category: "guides"
-tags: ["wifi", "security-fundamentals", "wireless-security", "beginner"]
-author: "MITM.life"
-difficulty: "beginner"
-readTime: "12 min"
+category: 'guides'
+tags: ['wifi', 'security-fundamentals', 'wireless-security', 'beginner']
+author: 'MITM.life'
+difficulty: 'beginner'
+readTime: '12 min'
 ---
 
 # WiFi Security Fundamentals: Understanding Wireless Network Protection
@@ -18,6 +18,7 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 ## WiFi Security Protocols Evolution
 
 ### WEP (Wired Equivalent Privacy)
+
 **Status: Deprecated (Do not use)**
 
 - **Introduced**: 1997
@@ -26,6 +27,7 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 - **Authentication**: Open System or Shared Key
 
 **Why WEP Failed:**
+
 ```bash
 # WEP vulnerabilities
 1. Weak initialization vectors (IVs)
@@ -35,6 +37,7 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 ```
 
 ### WPA (WiFi Protected Access)
+
 **Status: Legacy (Avoid if possible)**
 
 - **Introduced**: 2003
@@ -43,11 +46,13 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 - **Key Length**: 128-bit
 
 **Improvements over WEP:**
+
 - Dynamic key generation
 - Message integrity check (MIC)
 - Per-packet key mixing
 
 ### WPA2 (WiFi Protected Access II)
+
 **Status: Standard (Minimum recommended)**
 
 - **Introduced**: 2004
@@ -56,6 +61,7 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 - **Key Length**: 128-bit or 256-bit
 
 **Key Features:**
+
 ```bash
 # WPA2 security mechanisms
 1. AES encryption (Advanced Encryption Standard)
@@ -65,6 +71,7 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 ```
 
 ### WPA3 (WiFi Protected Access III)
+
 **Status: Current Standard (Recommended)**
 
 - **Introduced**: 2018
@@ -73,6 +80,7 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 - **Key Length**: 128-bit or 192-bit
 
 **Major Improvements:**
+
 - Individualized data encryption
 - Protection against offline dictionary attacks
 - Forward secrecy
@@ -83,6 +91,7 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 ### Personal vs Enterprise
 
 #### Personal (PSK - Pre-Shared Key)
+
 ```bash
 # Home/small office setup
 - Single passphrase for all users
@@ -92,6 +101,7 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 ```
 
 #### Enterprise (802.1X/EAP)
+
 ```bash
 # Corporate/organizational setup
 - Individual credentials per user
@@ -103,22 +113,26 @@ WiFi networks are everywhere, but many users don't understand the security mecha
 ### Common EAP Methods
 
 #### EAP-TLS (Transport Layer Security)
+
 - Certificate-based authentication
 - Highest security level
 - Complex deployment
 
 #### PEAP (Protected EAP)
+
 - Username/password with server certificate
 - Widely supported
 - Good security balance
 
 #### EAP-TTLS (Tunneled TLS)
+
 - Similar to PEAP
 - More flexible inner authentication
 
 ## Common WiFi Vulnerabilities
 
 ### 1. Weak Passphrases
+
 ```bash
 # Vulnerable examples
 password123
@@ -130,12 +144,15 @@ $unS3t-Gr0ve#Mountain!47
 ```
 
 ### 2. WPS (WiFi Protected Setup)
+
 **Common vulnerabilities:**
+
 - PIN brute force attacks
 - PBC (Push Button) timing attacks
 - Offline PIN cracking
 
 ### 3. Rogue Access Points
+
 ```bash
 # Evil twin attacks
 1. Attacker creates AP with same SSID
@@ -145,6 +162,7 @@ $unS3t-Gr0ve#Mountain!47
 ```
 
 ### 4. Client-Side Attacks
+
 - Deauthentication attacks
 - Karma attacks
 - Captive portal bypass
@@ -152,6 +170,7 @@ $unS3t-Gr0ve#Mountain!47
 ## WiFi Security Assessment Basics
 
 ### Information Gathering
+
 ```bash
 # Basic network discovery
 iwlist scan | grep -E "(ESSID|Frequency|Quality|Encryption)"
@@ -161,6 +180,7 @@ sudo airodump-ng wlan0mon
 ```
 
 ### Signal Analysis
+
 ```bash
 # Check signal strength
 iwconfig wlan0
@@ -170,6 +190,7 @@ iwlist wlan0 frequency
 ```
 
 ### Security Configuration Review
+
 ```bash
 # Check current connection security
 iwconfig wlan0 | grep -E "(Encryption|Authentication)"
@@ -183,6 +204,7 @@ nmcli connection show
 ### For Network Administrators
 
 #### 1. Use Strong Authentication
+
 ```bash
 # WPA3 configuration example (hostapd)
 interface=wlan0
@@ -201,11 +223,13 @@ rsn_pairwise=CCMP
 ```
 
 #### 2. Network Segmentation
+
 - Guest networks isolated from internal resources
 - VLAN segregation
 - Firewall rules between wireless and wired networks
 
 #### 3. Monitor and Log
+
 ```bash
 # Monitor wireless events
 sudo tcpdump -i wlan0mon -w wifi_capture.pcap
@@ -217,11 +241,13 @@ grep -i "authentication" /var/log/hostapd.log
 ### For End Users
 
 #### 1. Strong Passphrases
+
 - Minimum 15 characters
 - Mix of uppercase, lowercase, numbers, symbols
 - Avoid dictionary words
 
 #### 2. Network Verification
+
 ```bash
 # Verify network authenticity
 - Check certificate details
@@ -230,6 +256,7 @@ grep -i "authentication" /var/log/hostapd.log
 ```
 
 #### 3. Use VPN on Public WiFi
+
 ```bash
 # Always use VPN on public networks
 - Encrypts all traffic
@@ -240,6 +267,7 @@ grep -i "authentication" /var/log/hostapd.log
 ## Security Monitoring Tools
 
 ### Network Scanning
+
 ```bash
 # Basic tools
 nmap -sn 192.168.1.0/24    # Network discovery
@@ -248,6 +276,7 @@ netdiscover -r 192.168.1.0/24  # Passive discovery
 ```
 
 ### Traffic Analysis
+
 ```bash
 # Packet capture and analysis
 tcpdump -i wlan0 -w capture.pcap
@@ -256,6 +285,7 @@ tshark -i wlan0 -f "wlan type mgt"
 ```
 
 ### WiFi Analyzer Apps
+
 - WiFi Analyzer (Android)
 - WiFi Explorer (macOS)
 - InSSIDer (Windows)
@@ -263,12 +293,14 @@ tshark -i wlan0 -f "wlan type mgt"
 ## Compliance and Standards
 
 ### Industry Standards
+
 - **IEEE 802.11**: WiFi technical standards
 - **WiFi Alliance**: Certification programs
 - **NIST**: Cybersecurity Framework guidelines
 - **ISO 27001**: Information security management
 
 ### Compliance Requirements
+
 - **PCI DSS**: Payment card industry requirements
 - **HIPAA**: Healthcare data protection
 - **GDPR**: European privacy regulation

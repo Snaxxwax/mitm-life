@@ -1,12 +1,12 @@
 ---
-title: "WiFi Security Tools: Complete Arsenal for Wireless Network Assessment"
-description: "Comprehensive guide to essential WiFi security tools including aircrack-ng, hashcat, kismet, and modern wireless testing frameworks"
+title: 'WiFi Security Tools: Complete Arsenal for Wireless Network Assessment'
+description: 'Comprehensive guide to essential WiFi security tools including aircrack-ng, hashcat, kismet, and modern wireless testing frameworks'
 pubDate: 2025-09-03
-category: "tools"
-tags: ["wifi-tools", "aircrack-ng", "hashcat", "kismet", "penetration-testing"]
-author: "MITM.life"
-difficulty: "intermediate"
-readTime: "20 min"
+category: 'tools'
+tags: ['wifi-tools', 'aircrack-ng', 'hashcat', 'kismet', 'penetration-testing']
+author: 'MITM.life'
+difficulty: 'intermediate'
+readTime: '20 min'
 ---
 
 # WiFi Security Tools: Complete Arsenal for Wireless Network Assessment
@@ -20,9 +20,11 @@ This comprehensive guide covers essential WiFi security tools used by cybersecur
 ### Aircrack-ng Suite
 
 #### Overview
+
 The most widely used wireless security testing toolkit, providing comprehensive WiFi assessment capabilities.
 
 #### Installation
+
 ```bash
 # Ubuntu/Debian
 sudo apt install aircrack-ng
@@ -39,6 +41,7 @@ make && sudo make install
 #### Key Components
 
 ##### airmon-ng
+
 ```bash
 # Purpose: Wireless interface management and monitor mode
 sudo airmon-ng check kill          # Kill interfering processes
@@ -53,6 +56,7 @@ airmon-ng check
 ```
 
 ##### airodump-ng
+
 ```bash
 # Purpose: Wireless packet capture and analysis
 sudo airodump-ng wlan0mon                    # Basic scan
@@ -65,6 +69,7 @@ sudo airodump-ng --bssid [MAC] -c 6 -w target wlan0mon
 ```
 
 ##### aireplay-ng
+
 ```bash
 # Purpose: Packet injection for various attacks
 sudo aireplay-ng -0 10 -a [AP_MAC] wlan0mon              # Deauth attack
@@ -75,6 +80,7 @@ sudo aireplay-ng -5 -b [AP_MAC] wlan0mon                 # Fragmentation
 ```
 
 ##### aircrack-ng
+
 ```bash
 # Purpose: Password/key recovery
 aircrack-ng capture-01.cap                               # WEP cracking
@@ -89,6 +95,7 @@ aircrack-ng -P capture-01.cap                           # PTW attack
 ### Hashcat (GPU Acceleration)
 
 #### Installation and Setup
+
 ```bash
 # Install hashcat
 sudo apt install hashcat
@@ -101,6 +108,7 @@ sudo apt install ocl-icd-opencl-dev nvidia-opencl-dev
 ```
 
 #### WiFi-Specific Usage
+
 ```bash
 # Convert captures for hashcat
 hcxpcapngtool -o hash.hc22000 capture.pcapng
@@ -120,6 +128,7 @@ hashcat -m 22000 hash.hc22000 -a 6 wordlist.txt ?d?d?d   # Hybrid
 ```
 
 #### Performance Optimization
+
 ```bash
 # Workload tuning
 hashcat -m 22000 hash.hc22000 wordlist.txt -w 3         # High workload
@@ -135,6 +144,7 @@ hashcat --stdout -a 3 ?l?l?l?l?l?l?l?l | head -10000 > custom.txt
 ### Wifite (Automated Testing)
 
 #### Installation
+
 ```bash
 # Install wifite
 sudo apt install wifite
@@ -146,6 +156,7 @@ sudo python setup.py install
 ```
 
 #### Usage Examples
+
 ```bash
 # Automated WEP/WPS attacks
 sudo wifite
@@ -168,6 +179,7 @@ sudo wifite --no-wps --no-reaver
 ### Kismet (Professional Monitoring)
 
 #### Installation and Configuration
+
 ```bash
 # Install kismet
 sudo apt install kismet
@@ -181,6 +193,7 @@ sudo nano /etc/kismet/kismet_site.conf
 ```
 
 #### Usage
+
 ```bash
 # Start kismet server
 sudo kismet
@@ -193,6 +206,7 @@ kismet_log_devices --in kismetdb.kismet --out devices.txt
 ```
 
 #### Advanced Features
+
 ```bash
 # GPS integration
 sudo kismet -c wlan0:name=mobile,gps=gpsd
@@ -210,6 +224,7 @@ sudo kismet -c wlan0:name=remote,host=remote-host
 ### HCX Tools Suite
 
 #### Installation
+
 ```bash
 # Install hcx tools
 sudo apt install hcxtools hcxdumptool
@@ -221,6 +236,7 @@ make && sudo make install
 ```
 
 #### Usage Examples
+
 ```bash
 # Capture with hcxdumptool
 sudo hcxdumptool -i wlan0mon -o capture.pcapng --enable_status=15
@@ -238,6 +254,7 @@ hcxpcapngtool --info capture.pcapng
 ### Reaver (WPS Testing)
 
 #### Installation and Usage
+
 ```bash
 # Install reaver
 sudo apt install reaver
@@ -255,6 +272,7 @@ sudo reaver -i wlan0mon -b [TARGET_MAC] -vv -d 60 -t 30 -c 6
 ### Bully (Alternative WPS Tool)
 
 #### Installation and Usage
+
 ```bash
 # Install bully
 sudo apt install bully
@@ -269,6 +287,7 @@ sudo bully -b [TARGET_MAC] -c 6 -d -v 3 wlan0mon
 ### Wireshark (Traffic Analysis)
 
 #### WiFi-Specific Features
+
 ```bash
 # Install wireshark
 sudo apt install wireshark
@@ -290,9 +309,11 @@ tshark -r capture.pcap -T fields -e wlan.ssid -e wlan.bssid
 ### WiFi Pineapple (Hardware Platform)
 
 #### Overview
+
 Dedicated wireless penetration testing platform with web interface and modular architecture.
 
 #### Key Modules
+
 ```bash
 # Evil Portal - Captive portal attacks
 # Recon - Network reconnaissance
@@ -304,6 +325,7 @@ Dedicated wireless penetration testing platform with web interface and modular a
 ### Pwnagotchi (AI-Powered)
 
 #### Setup and Configuration
+
 ```bash
 # Install on Raspberry Pi
 # AI-powered WPA handshake collection
@@ -314,6 +336,7 @@ Dedicated wireless penetration testing platform with web interface and modular a
 ### ESP32 WiFi Tools
 
 #### Deauther Project
+
 ```bash
 # ESP32-based deauthentication tool
 # Web interface control
@@ -326,6 +349,7 @@ Dedicated wireless penetration testing platform with web interface and modular a
 ### Python WiFi Libraries
 
 #### Scapy for WiFi
+
 ```python
 from scapy.all import *
 
@@ -337,14 +361,15 @@ def packet_handler(pkt):
 sniff(iface="wlan0mon", prn=packet_handler)
 
 # Send deauth frames
-dot11 = Dot11(addr1="ff:ff:ff:ff:ff:ff", 
-              addr2=ap_mac, 
+dot11 = Dot11(addr1="ff:ff:ff:ff:ff:ff",
+              addr2=ap_mac,
               addr3=ap_mac)
 deauth = Dot11Deauth(reason=7)
 sendp(RadioTap()/dot11/deauth, iface="wlan0mon")
 ```
 
 #### WiFi Scanner Script
+
 ```bash
 #!/bin/bash
 # wifi_scanner.sh
@@ -378,6 +403,7 @@ netsh wlan show interface
 ## Tool Integration and Workflows
 
 ### Automated Assessment Pipeline
+
 ```bash
 #!/bin/bash
 # wifi_assessment.sh
@@ -404,6 +430,7 @@ python3 generate_report.py $TARGET_DIR
 ```
 
 ### Multi-Tool Correlation
+
 ```bash
 # Combine results from different tools
 # Kismet logs + Airodump captures + Hashcat results
@@ -416,21 +443,25 @@ python3 generate_report.py $TARGET_DIR
 ### Android Tools
 
 #### WiFi Analyzer
+
 - Signal strength mapping
 - Channel usage analysis
 - Network discovery
 
 #### WPS Connect
+
 - WPS vulnerability testing
 - Default PIN databases
 - Root required for advanced features
 
 #### WiFi WPS WPA Tester
+
 - WPS PIN testing
 - Default credential testing
 - Network vulnerability assessment
 
 ### iOS Tools
+
 - WiFi Explorer
 - Network Analyzer
 - WiFi Signal (limited capabilities)
@@ -438,6 +469,7 @@ python3 generate_report.py $TARGET_DIR
 ## Hardware Considerations
 
 ### WiFi Adapter Selection
+
 ```bash
 # Recommended adapters for penetration testing
 1. Alfa AWUS036ACS - 802.11ac, dual-band
@@ -451,10 +483,11 @@ dmesg | grep -i wireless
 ```
 
 ### External Antennas
+
 ```bash
 # Antenna types and applications
 - Omnidirectional: General scanning
-- Directional (Yagi): Long-range targeting  
+- Directional (Yagi): Long-range targeting
 - Panel: Medium-range focused coverage
 - Rubber duck: Portable operations
 ```
@@ -462,6 +495,7 @@ dmesg | grep -i wireless
 ## Legal and Ethical Guidelines
 
 ### Authorization Requirements
+
 ```bash
 # Before using any WiFi security tools:
 1. Written permission from network owner
@@ -472,6 +506,7 @@ dmesg | grep -i wireless
 ```
 
 ### Professional Usage
+
 ```bash
 # Best practices for consultants:
 - Document all testing activities
@@ -484,6 +519,7 @@ dmesg | grep -i wireless
 ## Tool Maintenance and Updates
 
 ### Keeping Tools Current
+
 ```bash
 # Regular updates
 sudo apt update && sudo apt upgrade
@@ -500,6 +536,7 @@ wifite --version
 ```
 
 ### Custom Tool Development
+
 ```bash
 # Areas for custom development:
 - Automated reporting systems
@@ -512,6 +549,7 @@ wifite --version
 ## Troubleshooting Common Issues
 
 ### Monitor Mode Problems
+
 ```bash
 # Kill interfering processes
 sudo airmon-ng check kill
@@ -525,6 +563,7 @@ sudo airmon-ng start wlan0
 ```
 
 ### Performance Optimization
+
 ```bash
 # GPU acceleration for hashcat
 nvidia-smi  # Check GPU status
@@ -540,6 +579,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 WiFi security tools form the foundation of wireless network assessment. Understanding their capabilities, limitations, and proper usage is essential for effective security testing.
 
 ### Tool Selection Criteria
+
 1. **Assessment objectives and scope**
 2. **Target network characteristics**
 3. **Available time and resources**
@@ -547,6 +587,7 @@ WiFi security tools form the foundation of wireless network assessment. Understa
 5. **Skill level and experience**
 
 ### Continued Learning
+
 - Practice in controlled environments
 - Stay updated with new tools and techniques
 - Participate in security communities

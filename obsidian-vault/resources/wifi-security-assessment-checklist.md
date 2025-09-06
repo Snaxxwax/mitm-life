@@ -1,12 +1,12 @@
 ---
-title: "WiFi Security Assessment Checklist"
-description: "A comprehensive checklist for conducting professional wireless security assessments and red team operations"
+title: 'WiFi Security Assessment Checklist'
+description: 'A comprehensive checklist for conducting professional wireless security assessments and red team operations'
 pubDate: 2025-08-28
-category: "resources"
-tags: ["checklist", "wifi-security", "assessment", "methodology"]
-author: "MITM.life"
-difficulty: "intermediate"
-readTime: "10 min"
+category: 'resources'
+tags: ['checklist', 'wifi-security', 'assessment', 'methodology']
+author: 'MITM.life'
+difficulty: 'intermediate'
+readTime: '10 min'
 ---
 
 # WiFi Security Assessment Checklist
@@ -16,6 +16,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Pre-Assessment Phase
 
 ### Legal and Authorization
+
 - [ ] **Written Authorization**: Obtain signed statement of work/authorization letter
 - [ ] **Scope Definition**: Clearly define testing boundaries and limitations
 - [ ] **Emergency Contacts**: Identify key contacts for technical issues
@@ -24,7 +25,8 @@ A comprehensive checklist for conducting professional wireless security assessme
 - [ ] **Legal Compliance**: Ensure compliance with local wireless regulations
 
 ### Equipment Preparation
-- [ ] **WiFi Adapters**: 
+
+- [ ] **WiFi Adapters**:
   - [ ] Primary adapter with monitor mode support (Alfa AWUS036ACS recommended)
   - [ ] Backup adapter for dual-band operations
   - [ ] USB extension cable for optimal positioning
@@ -42,6 +44,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Smartphone with WiFi analysis apps
 
 ### Software Verification
+
 - [ ] **Core Tools**:
   - [ ] aircrack-ng suite (latest version)
   - [ ] hashcat with GPU support
@@ -58,6 +61,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Reconnaissance Phase
 
 ### Passive Information Gathering
+
 - [ ] **Physical Reconnaissance**:
   - [ ] Map building layout and access points
   - [ ] Identify external antennas and equipment
@@ -70,6 +74,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Review job postings for technology stack details
 
 ### Wireless Survey
+
 - [ ] **Network Discovery**:
   - [ ] Conduct comprehensive channel scan (2.4GHz and 5GHz)
   - [ ] Document all discovered SSIDs and BSSIDs
@@ -83,6 +88,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Note coverage gaps and dead zones
 
 ### Target Prioritization
+
 - [ ] **Vulnerability Assessment**:
   - [ ] Identify WEP networks (highest priority)
   - [ ] List WPS-enabled access points
@@ -97,6 +103,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Active Assessment Phase
 
 ### WEP Network Testing
+
 - [ ] **Attack Execution**:
   - [ ] Capture sufficient IV packets (>10,000)
   - [ ] Perform ARP replay attacks if needed
@@ -108,6 +115,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Document internal network access level
 
 ### WPS Assessment
+
 - [ ] **Discovery and Enumeration**:
   - [ ] Identify WPS-enabled access points
   - [ ] Check WPS lock status
@@ -119,6 +127,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Document successful PIN recovery
 
 ### WPA/WPA2/WPA3 Testing
+
 - [ ] **Handshake Capture**:
   - [ ] Successfully capture 4-way handshake
   - [ ] Verify handshake integrity
@@ -134,6 +143,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Document cracking success rate and time
 
 ### Enterprise Network Assessment
+
 - [ ] **802.1X/EAP Testing**:
   - [ ] Identify EAP methods in use
   - [ ] Test for certificate validation issues
@@ -147,6 +157,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Evil Twin and Social Engineering
 
 ### Rogue Access Point Deployment
+
 - [ ] **Infrastructure Setup**:
   - [ ] Deploy convincing evil twin AP
   - [ ] Configure identical SSID and settings
@@ -163,6 +174,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Document user interaction patterns
 
 ### Advanced Attack Scenarios
+
 - [ ] **Karma Attacks**:
   - [ ] Respond to client probe requests
   - [ ] Create fake networks based on client history
@@ -176,6 +188,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Post-Exploitation Assessment
 
 ### Network Access Verification
+
 - [ ] **Connectivity Testing**:
   - [ ] Verify internet access through compromised network
   - [ ] Test internal network accessibility
@@ -187,6 +200,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Test for lateral movement opportunities
 
 ### Data Collection
+
 - [ ] **Network Traffic Analysis**:
   - [ ] Capture and analyze network traffic
   - [ ] Identify sensitive data transmission
@@ -200,6 +214,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Defense Evasion and Operational Security
 
 ### Stealth Operations
+
 - [ ] **MAC Address Management**:
   - [ ] Randomize MAC addresses regularly
   - [ ] Use OUI from common manufacturers
@@ -214,6 +229,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Monitor for security team responses
 
 ### Detection Avoidance
+
 - [ ] **Monitoring for Countermeasures**:
   - [ ] Watch for new access points (honeypots)
   - [ ] Monitor for unusual network behavior
@@ -227,6 +243,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Documentation and Reporting
 
 ### Technical Documentation
+
 - [ ] **Network Inventory**:
   - [ ] Complete list of discovered networks
   - [ ] Security configurations for each network
@@ -239,6 +256,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Screenshots and evidence collection
 
 ### Risk Assessment
+
 - [ ] **Vulnerability Classification**:
   - [ ] Critical: Immediate compromise possible
   - [ ] High: Compromise likely with moderate effort
@@ -251,6 +269,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Reputation and customer trust impacts
 
 ### Remediation Recommendations
+
 - [ ] **Immediate Actions** (Critical/High Risk):
   - [ ] Disable WEP encryption immediately
   - [ ] Disable WPS on all access points
@@ -270,6 +289,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Quality Assurance and Validation
 
 ### Results Verification
+
 - [ ] **Double-check Critical Findings**:
   - [ ] Verify successful password cracks
   - [ ] Confirm network access achievements
@@ -282,6 +302,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Encrypt sensitive findings
 
 ### Peer Review
+
 - [ ] **Technical Review**:
   - [ ] Have senior team member review findings
   - [ ] Verify attack methodology accuracy
@@ -296,6 +317,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Post-Assessment Activities
 
 ### Data Management
+
 - [ ] **Cleanup Requirements**:
   - [ ] Remove any planted devices or software
   - [ ] Delete temporary files and logs
@@ -308,6 +330,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Document data handling procedures
 
 ### Client Communication
+
 - [ ] **Initial Briefing**:
   - [ ] Provide high-level findings summary
   - [ ] Highlight critical vulnerabilities
@@ -322,6 +345,7 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Emergency Procedures
 
 ### Incident Response
+
 - [ ] **If Critical Vulnerability Found**:
   - [ ] Immediately notify client emergency contact
   - [ ] Document the vulnerability thoroughly
@@ -334,6 +358,7 @@ A comprehensive checklist for conducting professional wireless security assessme
   - [ ] Cooperate fully with legal requirements
 
 ### Equipment Issues
+
 - [ ] **Hardware Failure**:
   - [ ] Have backup equipment readily available
   - [ ] Document any testing interruptions
@@ -350,13 +375,16 @@ A comprehensive checklist for conducting professional wireless security assessme
 ## Reporting Template Structure
 
 ### Executive Summary
+
 - Assessment scope and objectives
 - High-level findings summary
 - Risk rating distribution
 - Key recommendations
 
 ### Technical Findings
+
 For each vulnerability:
+
 - **Description**: Technical details of the vulnerability
 - **Risk Rating**: Critical/High/Medium/Low
 - **Impact**: Business impact if exploited
@@ -364,12 +392,14 @@ For each vulnerability:
 - **Remediation**: Specific steps to fix the issue
 
 ### Methodology
+
 - Tools and techniques used
 - Assessment timeline
 - Limitations and constraints
 - Testing approach rationale
 
 ### Appendices
+
 - Network inventory
 - Detailed tool output
 - Configuration examples
@@ -377,4 +407,4 @@ For each vulnerability:
 
 ---
 
-*This checklist ensures comprehensive coverage of wireless security assessment activities while maintaining professional standards and legal compliance.*
+_This checklist ensures comprehensive coverage of wireless security assessment activities while maintaining professional standards and legal compliance._

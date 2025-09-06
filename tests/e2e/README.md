@@ -5,7 +5,7 @@ This directory contains end-to-end tests for the MITM.life cybersecurity blog us
 ## Test Files
 
 - **`smoke.spec.ts`** - Basic smoke tests to ensure the site loads and core functionality works
-- **`navigation.spec.ts`** - Tests for navigation between pages and menu functionality  
+- **`navigation.spec.ts`** - Tests for navigation between pages and menu functionality
 - **`content.spec.ts`** - Tests for content pages (guides, research, resources, tools, about)
 - **`responsive.spec.ts`** - Responsive design tests across different viewport sizes
 - **`accessibility.spec.ts`** - Accessibility tests using axe-core

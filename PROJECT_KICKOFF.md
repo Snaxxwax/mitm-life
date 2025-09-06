@@ -8,10 +8,12 @@ Tools allowed: **filesystem**, **Playwright**. Use git **hooks** for quality gat
 ---
 
 ## 0) Project Brief (fill in)
+
 - Name: **`<NAME>`**
 - Goal: **`<GOAL>`**
 
 Confirm:
+
 - Astro for frontend
 - Cloudflare Pages for hosting (with GitHub)
 - GitHub Actions for CI
@@ -22,6 +24,7 @@ If anything is missing, ask before proceeding.
 ---
 
 ## 1) Initialization Plan (propose, then execute)
+
 - Folder structure for Astro.
 - Quality stack (ESLint, Prettier).
 - Playwright E2E baseline (homepage).
@@ -33,6 +36,7 @@ If anything is missing, ask before proceeding.
 ---
 
 ## 2) Commands (Agent may execute via filesystem tool as needed)
+
 ```bash
 # Create Astro project
 npm create astro@latest -- --template minimal --typescript
@@ -51,4 +55,5 @@ npx playwright install --with-deps
 # Git hooks
 npx husky init
 ```
+
 ...

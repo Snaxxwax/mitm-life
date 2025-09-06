@@ -19,13 +19,13 @@ const mockSlugify = (text: string): string => {
 describe('Content Utils', () => {
   describe('formatDate', () => {
     it('formats dates correctly', () => {
-      const testDate = new Date('2024-01-15');
+      const testDate = new Date(2024, 0, 15); // Use local date constructor
       const formatted = mockFormatDate(testDate);
       expect(formatted).toBe('January 15, 2024');
     });
 
     it('handles different date formats', () => {
-      const testDate = new Date('2024-12-31');
+      const testDate = new Date(2024, 11, 31); // Use local date constructor (month is 0-indexed)
       const formatted = mockFormatDate(testDate);
       expect(formatted).toBe('December 31, 2024');
     });

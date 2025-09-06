@@ -23,7 +23,7 @@ export default [
         window: 'readonly',
         document: 'readonly',
         console: 'readonly',
-        // Node.js globals  
+        // Node.js globals
         process: 'readonly',
         global: 'readonly',
         module: 'readonly',
@@ -44,7 +44,7 @@ export default [
     plugins: {
       '@typescript-eslint': tsPlugin,
       'jsx-a11y': jsxA11y,
-      'react': react,
+      react: react,
       'react-hooks': reactHooks,
     },
     rules: {
@@ -52,21 +52,24 @@ export default [
       ...jsxA11y.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      
+
       // TypeScript specific rules
-      '@typescript-eslint/no-unused-vars': ['error', { 
-        'argsIgnorePattern': '^_',
-        'varsIgnorePattern': '^_',
-        'caughtErrorsIgnorePattern': '^_'
-      }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      
+
       // React specific rules
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-      
+
       // Security and best practices
       'no-console': 'warn',
       'no-debugger': 'error',
@@ -74,7 +77,7 @@ export default [
       'no-eval': 'error',
       'no-implied-eval': 'error',
       'no-script-url': 'error',
-      
+
       // Accessibility
       'jsx-a11y/alt-text': 'error',
       'jsx-a11y/anchor-has-content': 'error',

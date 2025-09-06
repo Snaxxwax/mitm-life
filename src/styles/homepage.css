@@ -7,7 +7,8 @@ html {
 
 /* Custom animations for content freshness indicators */
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
   }
@@ -32,7 +33,8 @@ html {
 }
 
 @keyframes gradient-shift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -82,10 +84,18 @@ html {
   animation: float-up 0.6s ease-out;
 }
 
-.trust-signal:nth-child(1) { animation-delay: 0.1s; }
-.trust-signal:nth-child(2) { animation-delay: 0.2s; }
-.trust-signal:nth-child(3) { animation-delay: 0.3s; }
-.trust-signal:nth-child(4) { animation-delay: 0.4s; }
+.trust-signal:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.trust-signal:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.trust-signal:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.trust-signal:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 /* Newsletter form enhancements */
 .newsletter-input {
@@ -141,11 +151,11 @@ html {
   .category-grid {
     gap: 1rem;
   }
-  
+
   .category-card {
     padding: 1.5rem;
   }
-  
+
   .newsletter-form {
     padding: 1.5rem;
   }
@@ -170,11 +180,11 @@ html {
     transition-duration: 0.01ms !important;
     animation-play-state: paused !important;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
-  
+
   /* Disable particle effects for reduced motion */
   .animate-float,
   .animate-particle-burst,
@@ -189,11 +199,11 @@ html {
   .category-card {
     border-width: 2px;
   }
-  
+
   .trust-signal {
     border: 2px solid currentColor;
   }
-  
+
   .newsletter-input input {
     border-width: 2px;
   }
@@ -231,9 +241,15 @@ html {
   animation: slide-in-up 0.6s ease-out forwards;
 }
 
-.social-proof-item:nth-child(1) { animation-delay: 0.1s; }
-.social-proof-item:nth-child(2) { animation-delay: 0.2s; }
-.social-proof-item:nth-child(3) { animation-delay: 0.3s; }
+.social-proof-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.social-proof-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.social-proof-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
 
 @keyframes slide-in-up {
   from {
@@ -270,7 +286,8 @@ html {
 
 /* Floating particles effect */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
     opacity: 0.7;
   }
@@ -304,17 +321,39 @@ html {
 
 /* Bell ring animation */
 @keyframes ring {
-  0% { transform: rotate(0); }
-  10% { transform: rotate(30deg); }
-  20% { transform: rotate(-28deg); }
-  30% { transform: rotate(34deg); }
-  40% { transform: rotate(-32deg); }
-  50% { transform: rotate(30deg); }
-  60% { transform: rotate(-28deg); }
-  70% { transform: rotate(26deg); }
-  80% { transform: rotate(-24deg); }
-  90% { transform: rotate(22deg); }
-  100% { transform: rotate(0); }
+  0% {
+    transform: rotate(0);
+  }
+  10% {
+    transform: rotate(30deg);
+  }
+  20% {
+    transform: rotate(-28deg);
+  }
+  30% {
+    transform: rotate(34deg);
+  }
+  40% {
+    transform: rotate(-32deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  60% {
+    transform: rotate(-28deg);
+  }
+  70% {
+    transform: rotate(26deg);
+  }
+  80% {
+    transform: rotate(-24deg);
+  }
+  90% {
+    transform: rotate(22deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
 }
 
 .animate-ring {
@@ -340,8 +379,14 @@ html {
 
 /* Typing cursor effect */
 @keyframes typing-cursor {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .typing-cursor::after {
@@ -353,25 +398,46 @@ html {
 /* Glitch effect for easter eggs */
 @keyframes glitch {
   0% {
-    text-shadow: 0.05em 0 0 #ff0000, -0.05em -0.025em 0 #00ff00, 0.025em 0.05em 0 #0000ff;
+    text-shadow:
+      0.05em 0 0 #ff0000,
+      -0.05em -0.025em 0 #00ff00,
+      0.025em 0.05em 0 #0000ff;
   }
   15% {
-    text-shadow: 0.05em 0 0 #ff0000, -0.05em -0.025em 0 #00ff00, 0.025em 0.05em 0 #0000ff;
+    text-shadow:
+      0.05em 0 0 #ff0000,
+      -0.05em -0.025em 0 #00ff00,
+      0.025em 0.05em 0 #0000ff;
   }
   16% {
-    text-shadow: -0.05em -0.025em 0 #ff0000, 0.025em 0.025em 0 #00ff00, -0.05em -0.05em 0 #0000ff;
+    text-shadow:
+      -0.05em -0.025em 0 #ff0000,
+      0.025em 0.025em 0 #00ff00,
+      -0.05em -0.05em 0 #0000ff;
   }
   49% {
-    text-shadow: -0.05em -0.025em 0 #ff0000, 0.025em 0.025em 0 #00ff00, -0.05em -0.05em 0 #0000ff;
+    text-shadow:
+      -0.05em -0.025em 0 #ff0000,
+      0.025em 0.025em 0 #00ff00,
+      -0.05em -0.05em 0 #0000ff;
   }
   50% {
-    text-shadow: 0.025em 0.05em 0 #ff0000, 0.05em 0 0 #00ff00, 0 -0.05em 0 #0000ff;
+    text-shadow:
+      0.025em 0.05em 0 #ff0000,
+      0.05em 0 0 #00ff00,
+      0 -0.05em 0 #0000ff;
   }
   99% {
-    text-shadow: 0.025em 0.05em 0 #ff0000, 0.05em 0 0 #00ff00, 0 -0.05em 0 #0000ff;
+    text-shadow:
+      0.025em 0.05em 0 #ff0000,
+      0.05em 0 0 #00ff00,
+      0 -0.05em 0 #0000ff;
   }
   100% {
-    text-shadow: -0.025em 0 0 #ff0000, -0.025em -0.025em 0 #00ff00, -0.025em -0.05em 0 #0000ff;
+    text-shadow:
+      -0.025em 0 0 #ff0000,
+      -0.025em -0.025em 0 #00ff00,
+      -0.025em -0.05em 0 #0000ff;
   }
 }
 
@@ -505,14 +571,19 @@ html {
   background-size: 400% 400%;
   border-radius: inherit;
   animation: cyber-border-flow 3s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: exclude;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
 }
 
 @keyframes cyber-border-flow {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -555,12 +626,7 @@ html {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #10b981,
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
   animation: code-scan 2s infinite;
 }
 

@@ -26,7 +26,7 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock IntersectionObserver
-global.IntersectionObserver = class MockIntersectionObserver {
+class MockIntersectionObserver implements IntersectionObserver {
   root: Element | Document | null = null;
   rootMargin: string = '0px';
   thresholds: ReadonlyArray<number> = [0];
@@ -37,9 +37,9 @@ global.IntersectionObserver = class MockIntersectionObserver {
   ) {
     this.root = options?.root ?? null;
     this.rootMargin = options?.rootMargin ?? '0px';
-    this.thresholds = options?.threshold 
-      ? Array.isArray(options.threshold) 
-        ? options.threshold 
+    this.thresholds = options?.threshold
+      ? Array.isArray(options.threshold)
+        ? options.threshold
         : [options.threshold]
       : [0];
   }
@@ -59,4 +59,6 @@ global.IntersectionObserver = class MockIntersectionObserver {
   takeRecords(): IntersectionObserverEntry[] {
     return [];
   }
-} as any;
+}
+
+global.IntersectionObserver = MockIntersectionObserver as any;

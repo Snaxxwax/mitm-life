@@ -1,12 +1,12 @@
 ---
-title: "WPA/WEP Security Analysis: Deep Dive into WiFi Encryption Vulnerabilities"
-description: "Comprehensive technical analysis of WEP and WPA vulnerabilities, attack vectors, and security implementations in wireless networks"
+title: 'WPA/WEP Security Analysis: Deep Dive into WiFi Encryption Vulnerabilities'
+description: 'Comprehensive technical analysis of WEP and WPA vulnerabilities, attack vectors, and security implementations in wireless networks'
 pubDate: 2025-09-03
-category: "guides"
-tags: ["wpa", "wep", "encryption", "vulnerabilities", "crypto-analysis"]
-author: "MITM.life"
-difficulty: "intermediate"
-readTime: "22 min"
+category: 'guides'
+tags: ['wpa', 'wep', 'encryption', 'vulnerabilities', 'crypto-analysis']
+author: 'MITM.life'
+difficulty: 'intermediate'
+readTime: '22 min'
 ---
 
 # WPA/WEP Security Analysis: Deep Dive into WiFi Encryption Vulnerabilities
@@ -20,6 +20,7 @@ Understanding the technical details of WiFi encryption protocols is crucial for 
 ### Cryptographic Foundation
 
 #### RC4 Stream Cipher
+
 ```bash
 # WEP encryption process
 1. 40-bit or 104-bit key + 24-bit IV = 64-bit or 128-bit RC4 key
@@ -29,6 +30,7 @@ Understanding the technical details of WiFi encryption protocols is crucial for 
 ```
 
 #### Key Structure
+
 ```bash
 # WEP key composition
 - User key: 40-bit (5 bytes) or 104-bit (13 bytes)
@@ -39,6 +41,7 @@ Understanding the technical details of WiFi encryption protocols is crucial for 
 ### Critical Vulnerabilities
 
 #### 1. IV Weakness (FMS Attack)
+
 ```bash
 # Fluhrer-Mantin-Shamir Attack
 - Weak IVs reveal key bytes
@@ -52,6 +55,7 @@ FF:FF:03:XX:XX:XX  # Weak patterns
 ```
 
 #### 2. IV Collision and Reuse
+
 ```bash
 # Problem: 24-bit IV space
 - 2^24 = 16,777,216 possible IVs
@@ -61,6 +65,7 @@ FF:FF:03:XX:XX:XX  # Weak patterns
 ```
 
 #### 3. CRC-32 Integrity Weakness
+
 ```bash
 # Linear property of CRC-32
 - Predictable modification without detection
@@ -71,6 +76,7 @@ FF:FF:03:XX:XX:XX  # Weak patterns
 ### WEP Exploitation Techniques
 
 #### Active Injection Attacks
+
 ```bash
 # ARP replay attack
 sudo airodump-ng -c 6 --bssid [AP_MAC] -w wep_capture wlan0mon
@@ -86,6 +92,7 @@ sudo aireplay-ng -3 -b [AP_MAC] wlan0mon
 ```
 
 #### Korek Attack Implementation
+
 ```bash
 # Advanced statistical attack
 aircrack-ng -K wep_capture-01.cap  # Use Korek method
@@ -95,6 +102,7 @@ aircrack-ng -P wep_capture-01.cap  # More efficient
 ```
 
 #### Caffe Latte Attack
+
 ```bash
 # Client-side attack when AP is down
 # Requires captured packet from target client
@@ -106,6 +114,7 @@ aircrack-ng -P wep_capture-01.cap  # More efficient
 ### Cryptographic Improvements
 
 #### TKIP (Temporal Key Integrity Protocol)
+
 ```bash
 # Key hierarchy
 PMK (Pairwise Master Key) -> 256 bits from passphrase
@@ -114,6 +123,7 @@ TK (Temporal Key) -> 128 bits for encryption
 ```
 
 #### Michael MIC
+
 ```bash
 # Message Integrity Check
 - 64-bit authentication code
@@ -125,6 +135,7 @@ TK (Temporal Key) -> 128 bits for encryption
 ### WPA Vulnerabilities
 
 #### 1. Weak Passphrase Vulnerability
+
 ```bash
 # PBKDF2 key derivation
 PMK = PBKDF2(passphrase, SSID, 4096, 256)
@@ -135,6 +146,7 @@ PMK = PBKDF2(passphrase, SSID, 4096, 256)
 ```
 
 #### 2. 4-Way Handshake Capture
+
 ```bash
 # Handshake process
 1. AP -> Client: ANonce (random number)
@@ -146,6 +158,7 @@ PMK = PBKDF2(passphrase, SSID, 4096, 256)
 ```
 
 #### 3. Michael MIC Vulnerabilities
+
 ```bash
 # Beck-Tews Attack (2008)
 - 12-15 minute attack window
@@ -157,6 +170,7 @@ PMK = PBKDF2(passphrase, SSID, 4096, 256)
 ## WPA2 Security Analysis
 
 ### AES-CCMP Implementation
+
 ```bash
 # Counter Mode with CBC-MAC Protocol
 - AES 128-bit encryption
@@ -168,6 +182,7 @@ PMK = PBKDF2(passphrase, SSID, 4096, 256)
 ### WPA2 Attack Vectors
 
 #### 1. KRACK Attack (2017)
+
 ```bash
 # Key Reinstallation Attacks
 - Exploits 4-way handshake vulnerabilities
@@ -177,6 +192,7 @@ PMK = PBKDF2(passphrase, SSID, 4096, 256)
 ```
 
 #### 2. Dictionary Attacks
+
 ```bash
 # Enhanced methods for WPA2
 hcxpcapngtool -o hash.hc22000 capture.pcapng
@@ -187,6 +203,7 @@ hashcat -m 22000 hash.hc22000 rockyou.txt
 ```
 
 #### 3. PMKID Attack
+
 ```bash
 # Hashcat PMKID attack
 - No 4-way handshake needed
@@ -208,6 +225,7 @@ hashcat -m 16800 pmkid.txt rockyou.txt
 ### Network Assessment Methodology
 
 #### 1. Encryption Protocol Detection
+
 ```bash
 # Identify security implementation
 sudo airodump-ng wlan0mon | grep -E "(WEP|WPA|WPA2)"
@@ -219,6 +237,7 @@ tshark -i wlan0mon -f "wlan type mgt subtype beacon" -T fields -e wlan.ssid -e w
 ```
 
 #### 2. Key Strength Analysis
+
 ```bash
 # Passphrase complexity assessment
 # Common patterns to identify:
@@ -230,6 +249,7 @@ tshark -i wlan0mon -f "wlan type mgt subtype beacon" -T fields -e wlan.ssid -e w
 ```
 
 #### 3. Implementation Flaws
+
 ```bash
 # Common configuration weaknesses
 - WPS enabled (PIN brute force vulnerability)
@@ -242,6 +262,7 @@ tshark -i wlan0mon -f "wlan type mgt subtype beacon" -T fields -e wlan.ssid -e w
 ### Advanced Analysis Techniques
 
 #### 1. Traffic Pattern Analysis
+
 ```bash
 # Monitor network behavior
 sudo tshark -i wlan0mon -f "wlan addr3 [AP_MAC]" -T fields -e frame.time -e wlan.sa -e wlan.da
@@ -254,6 +275,7 @@ sudo tshark -i wlan0mon -f "wlan addr3 [AP_MAC]" -T fields -e frame.time -e wlan
 ```
 
 #### 2. Cryptographic Analysis
+
 ```bash
 # Examine key derivation
 # For WPA/WPA2: PMK = PBKDF2(passphrase, SSID, 4096, 256)
@@ -272,6 +294,7 @@ print('PMK:', binascii.hexlify(pmk))
 ```
 
 #### 3. Vulnerability Correlation
+
 ```bash
 # Cross-reference findings
 - Weak encryption + Poor key management
@@ -283,6 +306,7 @@ print('PMK:', binascii.hexlify(pmk))
 ## Defense Analysis and Recommendations
 
 ### WEP Migration Strategy
+
 ```bash
 # Immediate actions for WEP networks
 1. Disable WEP immediately
@@ -295,6 +319,7 @@ print('PMK:', binascii.hexlify(pmk))
 ```
 
 ### WPA/WPA2 Hardening
+
 ```bash
 # Security enhancements
 1. Strong passphrase (20+ characters)
@@ -305,6 +330,7 @@ print('PMK:', binascii.hexlify(pmk))
 ```
 
 ### Advanced Protection Mechanisms
+
 ```bash
 # Additional security layers
 - Network segmentation (VLANs)
@@ -317,6 +343,7 @@ print('PMK:', binascii.hexlify(pmk))
 ## Testing and Validation Tools
 
 ### Comprehensive Test Suite
+
 ```bash
 # WEP testing tools
 aircrack-ng      # Standard cracking
@@ -330,6 +357,7 @@ coWPAtty         # WPA-PSK auditing
 ```
 
 ### Automated Assessment
+
 ```bash
 # Wifite automation
 sudo wifite --wep --wps --timeout 300 --crack-dir results/
@@ -347,6 +375,7 @@ sudo pkill airodump-ng
 ```
 
 ### Reporting and Documentation
+
 ```bash
 # Generate comprehensive reports
 - Network inventory
@@ -359,6 +388,7 @@ sudo pkill airodump-ng
 ## Real-World Case Studies
 
 ### Case 1: Corporate WEP Legacy
+
 ```bash
 # Scenario: Manufacturing company with legacy WEP
 Assessment findings:
@@ -375,6 +405,7 @@ Remediation:
 ```
 
 ### Case 2: WPA2 Dictionary Attack Success
+
 ```bash
 # Scenario: Small business with weak passphrase
 Target: "CompanyName2020"
@@ -391,6 +422,7 @@ Lessons learned:
 ## Future Considerations
 
 ### WPA3 Migration
+
 ```bash
 # Enhanced security features
 - SAE (Simultaneous Authentication of Equals)
@@ -400,10 +432,11 @@ Lessons learned:
 ```
 
 ### Emerging Threats
+
 ```bash
 # New attack vectors to monitor
 - Side-channel attacks
-- Implementation-specific vulnerabilities  
+- Implementation-specific vulnerabilities
 - IoT device weaknesses
 - Supply chain compromises
 ```
@@ -413,6 +446,7 @@ Lessons learned:
 Understanding WEP and WPA vulnerabilities is essential for effective wireless security. The progression from broken WEP to increasingly robust WPA implementations shows the evolution of wireless security.
 
 ### Key Technical Insights
+
 1. **WEP is cryptographically broken and must be replaced**
 2. **WPA/WPA2 security depends heavily on passphrase strength**
 3. **Implementation details matter as much as protocol design**
@@ -420,6 +454,7 @@ Understanding WEP and WPA vulnerabilities is essential for effective wireless se
 5. **Regular assessment and updates are critical**
 
 ### Next Steps
+
 - Implement [WiFi Security Assessment](wifi-security-assessment.md) methodology
 - Study [WiFi Security Tools](../tools/wifi-security-tools.md) for practical application
 - Explore [Advanced WiFi Penetration Testing](red-team-wifi-penetration-testing.md) techniques

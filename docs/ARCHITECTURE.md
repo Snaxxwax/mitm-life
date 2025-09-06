@@ -12,13 +12,13 @@ graph TB
     B --> C[Content Collections]
     C --> D[Astro SSG]
     D --> E[Static Site]
-    
+
     F[React Components] --> D
     G[Tailwind CSS] --> D
     H[TypeScript] --> D
-    
+
     E --> I[CDN/Hosting]
-    
+
     J[Git Hooks] --> K[Quality Gates]
     K --> L[CI/CD Pipeline]
     L --> I
@@ -27,28 +27,33 @@ graph TB
 ## Technology Stack
 
 ### Core Framework
+
 - **Astro 5.x**: Static site generator with partial hydration
 - **TypeScript**: Strict type safety throughout the codebase
 - **Node.js 18+**: Runtime environment and build tooling
 
 ### Content Management
+
 - **Obsidian**: Primary content authoring environment
 - **astro-loader-obsidian**: Real-time sync between Obsidian and Astro
 - **Content Collections**: Type-safe content API with schema validation
 
 ### UI & Styling
+
 - **React 18**: Component library for interactive elements
 - **Tailwind CSS**: Utility-first CSS framework
 - **Radix UI**: Accessible component primitives
 - **Lucide React**: Consistent icon system
 
 ### Development Tooling
+
 - **ESLint**: Code quality and consistency
 - **Prettier**: Automatic code formatting
 - **Vitest**: Unit and integration testing
 - **Playwright**: End-to-end testing
 
 ### Performance & Monitoring
+
 - **Lighthouse CI**: Performance monitoring and budgets
 - **Bundle Analysis**: Size monitoring and optimization
 - **Sharp**: Image optimization and processing
@@ -112,6 +117,7 @@ mitm/
 ## Content Management System
 
 ### Content Flow
+
 1. **Authoring**: Content created in Obsidian with real-time preview
 2. **Sync**: `astro-loader-obsidian` automatically syncs changes
 3. **Validation**: Content schema enforced via Astro Content Collections
@@ -119,20 +125,22 @@ mitm/
 5. **Rendering**: Static pages generated with optimal performance
 
 ### Content Schema
+
 ```typescript
 // Enforced via src/content/config.ts
 interface BlogPost {
-  title: string;           // Required: SEO and display title
-  description: string;     // Required: Meta description
-  pubDate: Date;          // Required: Publication date
+  title: string; // Required: SEO and display title
+  description: string; // Required: Meta description
+  pubDate: Date; // Required: Publication date
   category: ContentCategory; // Required: Content categorization
-  tags: string[];         // Required: Content tags
+  tags: string[]; // Required: Content tags
 }
 
 type ContentCategory = 'tools' | 'guides' | 'research' | 'resources';
 ```
 
 ### Link Resolution
+
 - **Wiki-style links**: `[[Page Title]]` automatically resolved
 - **Embeds**: `![[image.png]]` processed and optimized
 - **Cross-references**: Automatic bidirectional linking
@@ -141,6 +149,7 @@ type ContentCategory = 'tools' | 'guides' | 'research' | 'resources';
 ## Component Architecture
 
 ### Component Hierarchy
+
 ```
 App (Astro Layout)
 ├── Header (React)
@@ -155,12 +164,14 @@ App (Astro Layout)
 ```
 
 ### Design System
+
 - **Consistent spacing**: Tailwind spacing scale (4px base)
 - **Typography**: Systematic heading hierarchy and text sizes
 - **Color scheme**: Dark-first cybersecurity theme
 - **Responsive design**: Mobile-first with breakpoint consistency
 
 ### State Management
+
 - **Local state**: React hooks for component state
 - **Global state**: Astro props and static data
 - **No complex state management**: Leveraging static site generation
@@ -168,6 +179,7 @@ App (Astro Layout)
 ## Performance Architecture
 
 ### Optimization Strategies
+
 1. **Static Site Generation**: Pre-rendered pages for optimal loading
 2. **Partial Hydration**: Only interactive components use JavaScript
 3. **Image Optimization**: Sharp-based processing and responsive images
@@ -175,12 +187,14 @@ App (Astro Layout)
 5. **Bundle Optimization**: Tree shaking and dead code elimination
 
 ### Performance Budgets
+
 - **First Contentful Paint**: < 2.0 seconds
 - **Largest Contentful Paint**: < 2.5 seconds
 - **Cumulative Layout Shift**: < 0.1
 - **Total Bundle Size**: Monitored with alerts for >10% increases
 
 ### Caching Strategy
+
 - **Static Assets**: Long-term caching with versioning
 - **HTML Pages**: Cache with appropriate headers
 - **API Responses**: Cached where applicable
@@ -189,6 +203,7 @@ App (Astro Layout)
 ## Quality Assurance Architecture
 
 ### Automated Quality Gates
+
 ```mermaid
 graph LR
     A[Code Change] --> B[Pre-commit Hook]
@@ -202,6 +217,7 @@ graph LR
 ```
 
 ### Testing Strategy
+
 - **Unit Tests**: Vitest for functions and components
 - **Integration Tests**: Component interaction testing
 - **E2E Tests**: Playwright for user workflows
@@ -209,6 +225,7 @@ graph LR
 - **Security Tests**: Automated vulnerability scanning
 
 ### Code Quality Tools
+
 - **ESLint**: Comprehensive rules including security and accessibility
 - **Prettier**: Consistent code formatting with Astro support
 - **TypeScript**: Strict configuration with comprehensive type checking
@@ -217,6 +234,7 @@ graph LR
 ## Security Architecture
 
 ### Security Layers
+
 1. **Input Validation**: All user inputs validated and sanitized
 2. **Content Security**: No inline scripts, strict CSP headers
 3. **Dependency Security**: Regular audits and automatic updates
@@ -224,6 +242,7 @@ graph LR
 5. **Runtime Security**: HTTPS-only, secure headers
 
 ### Content Security Policy
+
 ```javascript
 // Implemented in production
 {
@@ -239,6 +258,7 @@ graph LR
 ## Deployment Architecture
 
 ### Build Process
+
 1. **Content Sync**: Obsidian vault synchronized
 2. **Type Checking**: Full TypeScript compilation
 3. **Testing**: Complete test suite execution
@@ -248,6 +268,7 @@ graph LR
 7. **Validation**: Final quality checks
 
 ### Hosting Strategy
+
 - **Static Hosting**: JAMstack deployment model
 - **CDN**: Global content distribution
 - **HTTPS**: SSL/TLS encryption enforced
@@ -256,12 +277,14 @@ graph LR
 ## Monitoring & Observability
 
 ### Performance Monitoring
+
 - **Core Web Vitals**: Automated monitoring and alerting
 - **Lighthouse CI**: Continuous performance regression testing
 - **Bundle Analysis**: Size tracking and optimization alerts
 - **Error Tracking**: Client-side error monitoring
 
 ### Content Monitoring
+
 - **Link Validation**: Automated broken link detection
 - **Content Quality**: Automated content validation
 - **SEO Monitoring**: Meta tag and structure validation
@@ -270,12 +293,14 @@ graph LR
 ## Scalability Considerations
 
 ### Content Scale
+
 - **Static Generation**: Scales to thousands of pages efficiently
 - **Incremental Builds**: Only changed content reprocessed
 - **Content Caching**: Efficient content delivery at scale
 - **Search Optimization**: Client-side search for large content volumes
 
 ### Development Scale
+
 - **Modular Architecture**: Components can be developed independently
 - **Type Safety**: TypeScript prevents runtime errors at scale
 - **Automated Testing**: Comprehensive test coverage maintains quality
@@ -284,6 +309,7 @@ graph LR
 ## Future Architecture Considerations
 
 ### Planned Enhancements
+
 1. **Advanced Search**: Full-text search with indexing
 2. **Interactive Features**: Comment system and user interactions
 3. **Analytics**: Privacy-focused analytics implementation
@@ -291,6 +317,7 @@ graph LR
 5. **API Layer**: Headless CMS capabilities for external integrations
 
 ### Migration Strategies
+
 - **Database Integration**: Seamless transition from static to dynamic content
 - **API Development**: RESTful API layer for extended functionality
 - **User Management**: Authentication and authorization system

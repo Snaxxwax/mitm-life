@@ -241,6 +241,7 @@ Add Google Analytics tracking to `src/components/BaseHead.astro` if desired.
 ### Scaling
 
 As your site grows, consider:
+
 - **Cloudflare Pro plan** for advanced features
 - **Custom caching strategies** for better performance
 - **CDN optimization** for global content delivery
@@ -248,4 +249,3 @@ As your site grows, consider:
 ---
 
 Your MITM.life cybersecurity blog is now ready for production! 🚀
-

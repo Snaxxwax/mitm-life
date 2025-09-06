@@ -1,12 +1,13 @@
 ---
-title: "WiFi Security Assessment: Complete Methodology for Wireless Network Auditing"
-description: "Step-by-step guide to conducting comprehensive WiFi security assessments including planning, execution, analysis, and reporting"
+title: 'WiFi Security Assessment: Complete Methodology for Wireless Network Auditing'
+description: 'Step-by-step guide to conducting comprehensive WiFi security assessments including planning, execution, analysis, and reporting'
 pubDate: 2025-09-03
-category: "guides"
-tags: ["wifi-assessment", "security-audit", "methodology", "penetration-testing"]
-author: "MITM.life"
-difficulty: "intermediate"
-readTime: "25 min"
+category: 'guides'
+tags:
+  ['wifi-assessment', 'security-audit', 'methodology', 'penetration-testing']
+author: 'MITM.life'
+difficulty: 'intermediate'
+readTime: '25 min'
 ---
 
 # WiFi Security Assessment: Complete Methodology for Wireless Network Auditing
@@ -20,6 +21,7 @@ WiFi security assessments are critical for identifying vulnerabilities in wirele
 ### Pre-Engagement Activities
 
 #### 1. Scope Definition
+
 ```bash
 # Define assessment boundaries
 - Physical locations to be tested
@@ -30,16 +32,18 @@ WiFi security assessments are critical for identifying vulnerabilities in wirele
 ```
 
 #### 2. Legal Documentation
+
 ```bash
 # Required documentation
 - Rules of Engagement (ROE)
-- Non-Disclosure Agreement (NDA)  
+- Non-Disclosure Agreement (NDA)
 - Statement of Work (SOW)
 - Authorization letters
 - Insurance verification
 ```
 
 #### 3. Equipment Preparation
+
 ```bash
 # Hardware checklist
 □ Primary WiFi adapter (monitor mode capable)
@@ -58,6 +62,7 @@ sudo apt install aircrack-ng hashcat wireshark kismet wifite reaver
 ### Information Gathering
 
 #### 1. Public Information Research
+
 ```bash
 # Organization intelligence
 - Company WiFi naming conventions
@@ -68,6 +73,7 @@ sudo apt install aircrack-ng hashcat wireshark kismet wifite reaver
 ```
 
 #### 2. Physical Site Survey
+
 ```bash
 # Site reconnaissance
 - Building layout and access points
@@ -82,6 +88,7 @@ sudo apt install aircrack-ng hashcat wireshark kismet wifite reaver
 ### Phase 1: Reconnaissance and Discovery
 
 #### 1.1 Passive Network Discovery
+
 ```bash
 # Start monitor mode
 sudo airmon-ng check kill
@@ -95,6 +102,7 @@ grep -v "^$" initial_scan-01.csv | awk -F, '{print $14,$6,$9,$4}' | sort | uniq
 ```
 
 #### 1.2 Active Network Enumeration
+
 ```bash
 # Channel-specific scanning
 for channel in 1 6 11; do
@@ -112,6 +120,7 @@ done
 ```
 
 #### 1.3 Hidden Network Detection
+
 ```bash
 # Monitor for hidden SSIDs
 sudo airodump-ng wlan0mon | grep "<length:"
@@ -126,6 +135,7 @@ tshark -i wlan0mon -f "wlan type mgt subtype beacon" -T fields -e wlan.bssid -e 
 ### Phase 2: Network Categorization and Prioritization
 
 #### 2.1 Security Classification
+
 ```bash
 # Create network inventory
 # Format: SSID, BSSID, Channel, Encryption, Signal, Clients, Priority
@@ -149,6 +159,7 @@ tshark -i wlan0mon -f "wlan type mgt subtype beacon" -T fields -e wlan.bssid -e 
 ```
 
 #### 2.2 Client Device Analysis
+
 ```bash
 # Monitor client activity
 sudo airodump-ng -c [CHANNEL] --bssid [AP_MAC] wlan0mon
@@ -164,6 +175,7 @@ sudo airodump-ng -c [CHANNEL] --bssid [AP_MAC] wlan0mon
 ### Phase 3: Vulnerability Assessment
 
 #### 3.1 Open Network Testing
+
 ```bash
 # Connect to open networks
 sudo nmcli dev wifi connect "OpenNetwork"
@@ -181,6 +193,7 @@ nmap -sS -O -sV -T4 [TARGET_IPS]
 ```
 
 #### 3.2 WEP Network Assessment
+
 ```bash
 # Target WEP networks
 sudo airodump-ng -c [CHANNEL] --bssid [WEP_AP_MAC] -w wep_attack wlan0mon
@@ -197,6 +210,7 @@ sudo aircrack-ng wep_attack-01.cap
 ```
 
 #### 3.3 WPS Vulnerability Testing
+
 ```bash
 # Scan for WPS-enabled networks
 wash -i wlan0mon
@@ -214,6 +228,7 @@ sudo bully -b [TARGET_MAC] -c [CHANNEL] wlan0mon
 ```
 
 #### 3.4 WPA/WPA2 Assessment
+
 ```bash
 # Capture 4-way handshake
 sudo airodump-ng -c [CHANNEL] --bssid [AP_MAC] -w handshake wlan0mon
@@ -230,6 +245,7 @@ hcxpcapngtool -z pmkid.hash pmkid.pcapng
 ```
 
 #### 3.5 Dictionary and Brute Force Analysis
+
 ```bash
 # Create target-specific wordlists
 # Common patterns:
@@ -249,13 +265,14 @@ hashcat -m 22000 hash.hc22000 custom_wordlist.txt --force
 # Document time estimates
 # Calculate crack time based on:
 - Wordlist size
-- GPU performance  
+- GPU performance
 - Password complexity patterns
 ```
 
 ### Phase 4: Advanced Attack Techniques
 
 #### 4.1 Evil Twin Attacks
+
 ```bash
 # Create rogue access point
 # hostapd.conf configuration
@@ -283,6 +300,7 @@ sudo dhcpd -cf dhcpd.conf -pf /var/run/dhcpd.pid wlan1
 ```
 
 #### 4.2 Client-Side Attacks
+
 ```bash
 # Karma attack simulation
 # Create fake networks matching client probe requests
@@ -298,6 +316,7 @@ sudo tshark -i wlan0mon -f "wlan type mgt subtype probe-req" -T fields -e wlan.s
 ### Phase 5: Enterprise Network Testing
 
 #### 5.1 802.1X Authentication Assessment
+
 ```bash
 # Certificate analysis
 openssl x509 -in radius_cert.pem -text -noout
@@ -314,6 +333,7 @@ openssl x509 -in radius_cert.pem -text -noout
 ```
 
 #### 5.2 RADIUS Server Testing
+
 ```bash
 # Network scanning for RADIUS
 nmap -p 1812,1813 [NETWORK_RANGE]
@@ -327,6 +347,7 @@ nmap -p 1812,1813 [NETWORK_RANGE]
 ### Data Collection Standards
 
 #### 1. Capture File Management
+
 ```bash
 # Organize captures by:
 - Date/time stamps
@@ -340,6 +361,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ```
 
 #### 2. Evidence Preservation
+
 ```bash
 # Secure storage requirements
 - Encrypted storage for all captures
@@ -351,6 +373,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ### Risk Assessment Framework
 
 #### 1. Vulnerability Classification
+
 ```bash
 # Critical Risk:
 - Open networks with sensitive data access
@@ -377,6 +400,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ```
 
 #### 2. Business Impact Analysis
+
 ```bash
 # Consider impact of:
 - Data confidentiality breach
@@ -391,6 +415,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ### Executive Summary Template
 
 #### 1. Assessment Overview
+
 ```bash
 # Key elements:
 - Engagement scope and objectives
@@ -401,6 +426,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ```
 
 #### 2. Risk Metrics
+
 ```bash
 # Quantitative measures:
 - Networks tested: X
@@ -418,6 +444,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ### Technical Findings Report
 
 #### 1. Detailed Vulnerability Analysis
+
 ```bash
 # For each finding:
 - Vulnerability description
@@ -429,6 +456,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ```
 
 #### 2. Network Inventory
+
 ```bash
 # Complete network catalog:
 - SSID and BSSID
@@ -441,6 +469,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ### Remediation Recommendations
 
 #### 1. Immediate Actions (0-30 days)
+
 ```bash
 # Critical fixes:
 - Disable WEP encryption
@@ -451,6 +480,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ```
 
 #### 2. Short-term Improvements (1-6 months)
+
 ```bash
 # Security enhancements:
 - Implement WPA3 where possible
@@ -461,6 +491,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ```
 
 #### 3. Long-term Strategy (6-12 months)
+
 ```bash
 # Strategic improvements:
 - Wireless security policy development
@@ -473,6 +504,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ## Quality Assurance and Validation
 
 ### Testing Verification
+
 ```bash
 # Validate findings:
 - Reproduce all successful attacks
@@ -482,6 +514,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ```
 
 ### Peer Review Process
+
 ```bash
 # Quality checks:
 - Technical accuracy review
@@ -493,6 +526,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ## Post-Assessment Activities
 
 ### Client Communication
+
 ```bash
 # Deliverables:
 - Executive briefing presentation
@@ -502,6 +536,7 @@ YYYYMMDD_HHMM_[SSID]_[ATTACK_TYPE].cap
 ```
 
 ### Knowledge Transfer
+
 ```bash
 # Client education:
 - Vulnerability explanations
