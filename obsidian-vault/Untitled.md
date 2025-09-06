@@ -1,117 +1,37 @@
-{
-"display": "/mcp ",
-"pastedContents": {}
-}
-],
-"mcpContextUris": [],
-"mcpServers": {
-"supabase": {
-"type": "stdio",
-"command": "npx",
-"args": [
-"-y",
-"@supabase/mcp-server-supabase@latest"
-],
-"env": {
-"SUPABASE_ACCESS_TOKEN": "sbp_v0_a1f23c6648c19b7a99682720eb5afcfe3b44023d"
-}
+# MITM.life - Cybersecurity Blog Notes
 
-},
-"github": {
-"type": "stdio",
-"command": "npx",
-"args": [
-"-y",
-"@modelcontextprotocol/server-github"
-],
-"env": {
-"GITHUB_PERSONAL_ACCESS_TOKEN": "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"
-}
-},
-"gl-inet-router": {
-"type": "stdio",
-"command": "node",
-"args": [
-"/home/lunix/Development/projects/mitm.life/gl-inet-mcp/dist/index.js"
-],
-"env": {
-"GLINET_HOST": "100.71.123.48",
-"GLINET_USERNAME": "root",
-"GLINET_PASSWORD": "0^9#baJ8WL8Z3O"
-}
-}
-},
-"s1mAccessCache": {
-"a9b1a5cc-2d27-40a0-92ed-b48262ed971c": {
-"hasAccess": false,
-"timestamp": 1756578456584
-}
-},
-"hasOpusPlanDefault": false
-}
+This is a temporary notes file for the MITM.life cybersecurity blog project.
 
-},
-"mcpServers": {
-"hf-mcp-server": {
-"type": "http",
-"url": "https://huggingface.co/mcp",
-"headers": {
-"Authorization": "Bearer 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"
-}
-},
-"tailscale": {
-"type": "stdio",
-"command": "npx",
-"args": [
-"--package=@hexsleeves/tailscale-mcp-server",
-"tailscale-mcp-server"
-],
-"env": {
-"TAILSCALE_API_KEY": "tskey-api-kFENpVuTL811CNTRL-9QxiaSamcUBpP9BEEb3kUBV3y4nYWxrkK",
-"TAILSCALE_TAILNET": "taila85c4e.ts.net"
-}
-},
-"cloudflare": {
-"type": "stdio",
-"command": "npx",
-"args": [
-"-y",
-"@cloudflare/mcp-server-cloudflare",
-"run",
-"1e2a83e8c2a7f317e6c50c7275514741"
-],
-"env": {}
+## Project Status
 
-},
-"github": {
-"type": "stdio",
-"command": "npx",
-"args": [
-"-y",
-"@modelcontextprotocol/server-github"
-],
-"env": {
-"GITHUB_PERSONAL_ACCESS_TOKEN": "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"
-}
-},
-"gl-inet-router": {
-"type": "stdio",
-"command": "node",
-"args": [
-"/home/lunix/Development/projects/mitm.life/gl-inet-mcp/dist/index.js"
-],
-"env": {
-"GLINET_HOST": "100.71.123.48",
-"GLINET_USERNAME": "root",
-"GLINET_PASSWORD": "0^9#baJ8WL8Z3O"
-}
-}
-},
-"s1mAccessCache": {
-"a9b1a5cc-2d27-40a0-92ed-b48262ed971c": {
-"hasAccess": false,
-"timestamp": 1756578456584
-}
-},
-"hasOpusPlanDefault": false
-}
+- ✅ Astro blog setup complete
+- ✅ Content collections configured
+- ✅ UI/UX components implemented
+- ✅ Testing suite (unit tests + E2E)
+- ✅ Code quality tools (ESLint, Prettier, TypeScript)
+- 🚧 Cloudflare Pages deployment in progress
+
+## Content Areas
+
+- **Guides**: WiFi security fundamentals, penetration testing, WPA/WEP analysis
+- **Tools**: Security assessment toolkits, red team tools
+- **Research**: Advanced attack techniques, security frameworks
+- **Resources**: Checklists, methodologies, best practices
+
+## Configuration Examples
+
+When setting up MCP servers or other integrations, always use environment variables for sensitive data:
+
+```bash
+# Example environment variables
+export GITHUB_TOKEN="your_token_here"
+export CLOUDFLARE_API_TOKEN="your_token_here"
+export SUPABASE_ACCESS_TOKEN="your_token_here"
+```
+
+## Deployment Notes
+
+- Uses GitHub Actions for CI/CD
+- Cloudflare Pages for hosting
+- Automated security scanning and testing
+- Performance monitoring with Lighthouse
