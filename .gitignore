@@ -71,3 +71,11 @@ coverage/
 
 # Miscellaneous
 *.log
+
+# Playwright & Test Reports
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Astro
+.astro/

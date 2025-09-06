@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔄 Running post-merge tasks..."
+
+# Check if package.json or package-lock.json changed
+if git diff --name-only HEAD@{1} HEAD | grep -E "(package\.json|package-lock\.json)" > /dev/null; then
+  echo "📦 Dependencies changed, running npm install..."
+  npm install
+fi
+
+# Clear .astro cache if astro.config.mjs changed
+if git diff --name-only HEAD@{1} HEAD | grep "astro.config.mjs" > /dev/null; then
+  echo "🧹 Clearing Astro cache..."
+  rm -rf .astro
+fi
+
+# Clear TypeScript cache if tsconfig.json changed
+if git diff --name-only HEAD@{1} HEAD | grep "tsconfig.json" > /dev/null; then
+  echo "🧹 Clearing TypeScript cache..."
+  rm -rf node_modules/.cache/typescript
+fi
+
+echo "✅ Post-merge tasks completed!"

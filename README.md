@@ -1,473 +1,295 @@
-# mitm.life - OSINT Cybersecurity Intelligence Blog
+# mitm.life - Cybersecurity Blog
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.2.0-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.4.5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
-[![Performance](https://img.shields.io/badge/Performance-A+-brightgreen?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Glossary/Performance)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/your-org/mitm/ci.yml?branch=main)](https://github.com/your-org/mitm/actions)
+[![Lighthouse Score](https://img.shields.io/badge/Lighthouse-90%2B-brightgreen)](https://developers.google.com/web/tools/lighthouse)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A high-performance OSINT (Open Source Intelligence) cybersecurity blog platform with integrated monetization features, built for defensive security research and education.
+A modern cybersecurity blog built with [Astro](https://astro.build) featuring seamless Obsidian integration for content management.
 
-## 🚀 Features
-
-### Content & Publishing
-- **Static Site Generation**: Lightning-fast performance with Next.js 14
-- **MDX Content**: Rich markdown content with React components
-- **Blog System**: Comprehensive blog with categorization and tagging
-- **Search Integration**: Full-text search with Pagefind
-- **RSS/JSON Feeds**: Multiple feed formats for content syndication
-
-### Monetization & Services
-- **OSINT Services**: Tiered cybersecurity intelligence offerings
-  - Basic Exposure Scan ($199)
-  - Targeted OSINT Dossier ($1,499)
-  - Custom Intelligence Services (quoted)
-- **Affiliate Marketing**: FTC-compliant affiliate program integration
-- **Payment Processing**: Stripe/LemonSqueezy integration
-- **Service Automation**: N8N webhook integration for order processing
-
-### Performance & Security
-- **A+ Performance Score**: Optimized for Core Web Vitals
-- **Security Headers**: Comprehensive CSP and security configuration
-- **SEO Optimized**: Open Graph, Twitter Cards, structured data
-- **Accessibility**: WCAG 2.1 AA compliant
-- **Legal Compliance**: GDPR, CCPA, FTC affiliate disclosure compliance
-
-### Technical Excellence
-- **TypeScript**: Full type safety across the application
-- **Modern React**: Server components, streaming, and Suspense
-- **Responsive Design**: Mobile-first design with Tailwind CSS
-- **Code Quality**: ESLint, Prettier, and comprehensive testing
-- **CI/CD Ready**: Automated deployment and quality checks
-
-## 📋 Table of Contents
-
-- [Quick Start](#quick-start)
-- [Project Structure](#project-structure)
-- [Development](#development)
-- [Deployment](#deployment)
-- [Legal Compliance](#legal-compliance)
-- [Performance](#performance)
-- [Contributing](#contributing)
-- [License](#license)
-
-## 🏃‍♂️ Quick Start
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- **Node.js**: 18.0.0 or higher
-- **pnpm**: 8.0.0 or higher (recommended) or npm/yarn
-- **Git**: Latest version
+- Node.js 18+ and npm
+- Git
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
-   git clone https://github.com/your-org/mitm-life-blog.git
-   cd mitm-life-blog
+   git clone <repository-url>
+   cd mitm
    ```
 
 2. **Install dependencies**
+
    ```bash
-   pnpm install
+   npm install
    ```
 
-3. **Run development server**
+3. **Set up Git hooks**
+
    ```bash
-   pnpm dev
+   npm run prepare
    ```
 
-4. **Open in browser**
+4. **Start development server**
+
+   ```bash
+   npm run dev
    ```
-   http://localhost:3000
-   ```
 
-### Environment Configuration
-
-Create a `.env.local` file in the root directory:
-
-```env
-# Analytics (optional)
-NEXT_PUBLIC_PLAUSIBLE_DOMAIN=mitm.life
-NEXT_PUBLIC_UMAMI_WEBSITE_ID=your-website-id
-
-# Payment Processing
-STRIPE_PUBLISHABLE_KEY=pk_live_...
-STRIPE_SECRET_KEY=sk_live_...
-LEMONSQUEEZY_WEBHOOK_SECRET=your-webhook-secret
-
-# N8N Webhook Integration
-N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/orders
-
-# Site Configuration
-NEXT_PUBLIC_SITE_URL=https://mitm.life
-NEXT_PUBLIC_SITE_NAME="mitm.life"
-```
+   Open [http://localhost:4321](http://localhost:4321) to view the site.
 
 ## 📁 Project Structure
 
 ```
-mitm-life-blog/
-├── content/                 # Content files
-│   ├── posts/              # Blog posts (MDX)
-│   └── pages/              # Static pages (MDX)
+mitm/
+├── .husky/                 # Git hooks for quality assurance
+├── obsidian-vault/         # Obsidian content (primary authoring)
+├── scripts/                # Maintenance and automation scripts
 ├── src/
-│   ├── app/                # Next.js 14 App Router
-│   │   ├── globals.css     # Global styles
-│   │   ├── layout.tsx      # Root layout
-│   │   └── page.tsx        # Homepage
 │   ├── components/         # React components
-│   │   ├── AffiliateCard.tsx
-│   │   ├── PricingTable.tsx
-│   │   └── performance/    # Performance-optimized components
-│   └── lib/                # Utility functions and configurations
-├── public/                 # Static assets
-├── out/                    # Static export output
-├── scripts/                # Build and utility scripts
-├── _headers                # Cloudflare Pages security headers
-├── _redirects              # Cloudflare Pages redirects
-├── contentlayer.config.ts  # Content processing configuration
-├── next.config.mjs         # Next.js configuration
-├── site.config.ts          # Site-wide configuration
-└── tailwind.config.ts      # Tailwind CSS configuration
+│   ├── pages/              # Astro pages and routing
+│   ├── styles/             # CSS and styling
+│   ├── utils/              # Utility functions
+│   └── types/              # TypeScript type definitions
+├── CLAUDE.md               # AI assistant configuration
+├── PROJECT_MEMORY.md       # Living log of decisions/todos
+├── PROJECT_SUMMARY.md      # High-level project snapshot
+├── astro.config.mjs        # Astro configuration
+├── tsconfig.json           # TypeScript configuration
+└── package.json            # Dependencies and scripts
 ```
 
-## 🛠 Development
+## 🛠️ Development Commands
 
-### Available Scripts
+### Essential Commands
 
-```bash
-# Development
-pnpm dev                    # Start development server
-pnpm build                  # Build for production
-pnpm start                  # Start production server
-pnpm preview               # Build and start production server
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run check` - Run Astro type checking
 
-# Code Quality
-pnpm lint                  # Run ESLint
-pnpm lint:fix              # Fix ESLint issues
-pnpm typecheck            # Run TypeScript compiler
-pnpm format               # Format code with Prettier
-pnpm format:check         # Check code formatting
+### Quality Assurance
 
-# Testing
-pnpm test                 # Run tests
-pnpm test:watch          # Run tests in watch mode
-pnpm test:ci             # Run tests for CI
+- `npm run lint` - Check code quality with ESLint
+- `npm run lint:fix` - Auto-fix ESLint issues
+- `npm run format` - Format code with Prettier
+- `npm run format:check` - Check code formatting
+- `npm run type-check` - Run TypeScript checks
 
-# Content
-pnpm new:post            # Create new blog post
-pnpm feeds:generate      # Generate RSS/JSON feeds
+### Testing
 
-# Performance
-pnpm build:analyze       # Analyze bundle size
-pnpm search:index        # Generate search index
+- `npm run test` - Run unit tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:coverage` - Generate test coverage report
+- `npm run e2e` - Run end-to-end tests
 
-# Utilities
-pnpm clean               # Clean build artifacts
-pnpm setup               # Full setup (install + build)
-```
+### Maintenance
 
-### Content Creation
+- `npm run audit` - Security audit
+- `npm run update-deps` - Update dependencies safely
+- `npm run health-check` - Comprehensive project health check
 
-#### Blog Posts
+### Performance & Content
 
-Create new blog posts in `content/posts/`:
+- `npm run lighthouse` - Performance audit
+- `npm run bundle-analyze` - Analyze bundle size
+- `npm run content-check` - Validate content quality
+- `npm run link-check` - Check for broken links
 
-```bash
-pnpm new:post
-```
+## 🎯 Content Management
 
-This creates a new MDX file with frontmatter template:
+### Obsidian Integration
 
-```mdx
+Content is authored in the `obsidian-vault/` directory using Obsidian. The system automatically syncs changes to the Astro site.
+
+#### Content Categories
+
+- `tools/` - Security tools and scripts
+- `guides/` - Step-by-step tutorials
+- `research/` - Original research and analysis
+- `resources/` - Curated reference materials
+
+#### Required Frontmatter
+
+```yaml
 ---
 title: 'Your Post Title'
-description: 'Post description for SEO'
-publishedAt: '2025-08-20'
-updatedAt: '2025-08-20'
-tags: ['osint', 'cybersecurity']
-featured: false
+description: 'Brief description for SEO and previews'
+pubDate: 2024-01-15
+category: tools # or guides, research, resources
+tags: ['security', 'tutorial']
 ---
-
-# Your Content Here
-
-Write your blog content using MDX syntax...
 ```
 
-#### Static Pages
+### Content Workflow
 
-Create pages in `content/pages/` with similar frontmatter structure.
+1. **Write** in Obsidian with proper frontmatter
+2. **Validate** with `npm run content-check`
+3. **Test** locally with `npm run dev`
+4. **Build** and verify with `npm run build`
+5. **Deploy** after all checks pass
 
-### Component Development
+### Example Content
 
-The project uses modern React patterns:
+- [Memory Forensics with Volatility](./src/pages/guides/memory-forensics.md)
+- [APT Cloud Infrastructure Analysis](./src/pages/research/apt-cloud.md)
 
-- **Server Components**: Default for better performance
-- **Client Components**: Use `'use client'` directive when needed
-- **TypeScript**: All components are fully typed
-- **Performance**: Optimized with memo, lazy loading, and code splitting
+## 🔧 Git Workflow
 
-## 🚀 Deployment
+### Automated Quality Gates
 
-### Cloudflare Pages (Recommended)
+Git hooks automatically enforce quality standards:
 
-1. **Connect Repository**
-   ```bash
-   # Push to GitHub
-   git remote add origin https://github.com/your-org/mitm-life-blog.git
-   git push -u origin main
-   ```
+- **Pre-commit**: Runs linting, formatting, type checking, and tests
+- **Pre-push**: Runs build and security audit
+- **Commit-msg**: Enforces conventional commit format
 
-2. **Configure Build Settings**
-   - Framework preset: Next.js
-   - Build command: `pnpm build`
-   - Build output directory: `out`
-   - Node.js version: 18
+### Commit Message Format
 
-3. **Environment Variables**
-   Set production environment variables in Cloudflare Pages dashboard
+```
+<type>[optional scope]: <description>
 
-4. **Custom Domain**
-   - Add custom domain: `mitm.life`
-   - Configure DNS records
-   - Enable automatic HTTPS
+Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build
+```
 
-### Manual Static Deployment
+Examples:
 
-For other static hosting providers:
+- `feat: add user authentication system`
+- `fix(ui): resolve mobile navigation issue`
+- `docs: update installation guide`
+
+## 🚦 Quality Standards
+
+### Code Quality
+
+- **ESLint**: Enforces consistent code style and catches errors
+- **Prettier**: Automatic code formatting
+- **TypeScript**: Strict type checking with comprehensive configuration
+- **Test Coverage**: Minimum 80% coverage required
+
+### Performance Requirements
+
+- Lighthouse score >90 for all categories
+- Core Web Vitals compliance
+- Bundle size monitoring with alerts for >10% increases
+- Image optimization for all assets
+
+### Security Standards
+
+- Regular dependency audits with `npm audit`
+- No hardcoded secrets or API keys
+- HTTPS enforcement in production
+- Content Security Policy implementation
+
+## 🏥 Maintenance
+
+### Regular Health Checks
+
+Run comprehensive health checks:
 
 ```bash
-# Build static export
-pnpm build
-
-# The 'out' directory contains the static site
-# Upload contents to your hosting provider
+npm run health-check
 ```
 
-### Performance Validation
+### Dependency Updates
 
-After deployment, verify performance:
+Safely update dependencies:
 
 ```bash
-# Run Lighthouse audit
-npx lighthouse https://mitm.life --chrome-flags="--headless"
-
-# Check Core Web Vitals
-# - LCP (Largest Contentful Paint): < 2.5s
-# - FID (First Input Delay): < 100ms
-# - CLS (Cumulative Layout Shift): < 0.1
+npm run update-deps
 ```
-
-## ⚖️ Legal Compliance
-
-### Privacy & Data Protection
-
-- **Privacy Policy**: Implemented with GDPR/CCPA compliance
-- **Terms of Service**: Comprehensive terms for OSINT services
-- **Cookie Consent**: EU-compliant cookie management
-- **Data Processing**: Secure handling of user data
-
-### FTC Compliance
-
-- **Affiliate Disclosures**: Clear "Paid Link" disclosures on all affiliate content
-- **Material Connections**: Transparent commission relationships
-- **Conspicuous Placement**: FTC-compliant disclosure positioning
-
-### OSINT Service Compliance
-
-- **Defensive Positioning**: All services positioned as defensive cybersecurity research
-- **Legal Disclaimers**: Comprehensive service limitation and liability disclaimers
-- **Client Attestation**: Legitimate business purpose requirements
-- **Prohibited Uses**: Clear restrictions on surveillance and illegal activities
-
-## 📊 Performance
-
-### Current Metrics
-
-- **Performance Score**: A+ (95/100)
-- **Accessibility**: 100/100
-- **Best Practices**: 100/100
-- **SEO**: 100/100
-
-### Core Web Vitals
-
-- **LCP**: 1.2s (Good)
-- **FID**: 45ms (Good)
-- **CLS**: 0.05 (Good)
-
-### Optimization Features
-
-- **Image Optimization**: Next.js Image component with lazy loading
-- **Code Splitting**: Automatic route-based and component-based splitting
-- **Compression**: Gzip/Brotli compression enabled
-- **Caching**: Aggressive static asset caching (1 year)
-- **CDN**: Global content delivery via Cloudflare
-
-## 🔧 Configuration
-
-### Site Configuration
-
-Edit `site.config.ts`:
-
-```typescript
-export const siteConfig = {
-  name: 'mitm.life',
-  title: 'Man-in-the-Middle Intelligence',
-  description: 'OSINT and cybersecurity research blog',
-  url: 'https://mitm.life',
-  ogImage: 'https://mitm.life/og-image.png',
-  links: {
-    twitter: 'https://twitter.com/mitm_life',
-    github: 'https://github.com/mitm-life',
-    linkedin: 'https://linkedin.com/company/mitm-life',
-  },
-  creator: 'mitm.life team',
-}
-```
-
-### Security Headers
-
-Security configuration in `_headers`:
-
-```
-/*
-  X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.plausible.io; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' *.plausible.io;
-```
-
-## 🧪 Testing
-
-### Test Structure
-
-```bash
-src/
-├── components/
-│   └── __tests__/          # Component tests
-└── lib/
-    └── __tests__/          # Utility function tests
-```
-
-### Running Tests
-
-```bash
-# Run all tests
-pnpm test
-
-# Run tests in watch mode
-pnpm test:watch
-
-# Run tests with coverage
-pnpm test:ci
-```
-
-### Test Technologies
-
-- **Jest**: Test runner and assertion library
-- **React Testing Library**: Component testing utilities
-- **TypeScript**: Type-safe tests
-
-## 🤝 Contributing
-
-### Development Workflow
-
-1. **Fork and Clone**
-   ```bash
-   git clone https://github.com/your-fork/mitm-life-blog.git
-   cd mitm-life-blog
-   ```
-
-2. **Create Feature Branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. **Make Changes**
-   - Follow existing code patterns
-   - Add tests for new functionality
-   - Update documentation as needed
-
-4. **Quality Checks**
-   ```bash
-   pnpm lint
-   pnpm typecheck
-   pnpm test
-   pnpm build
-   ```
-
-5. **Submit Pull Request**
-   - Clear description of changes
-   - Link to related issues
-   - Include screenshots for UI changes
-
-### Code Standards
-
-- **TypeScript**: Use strict typing
-- **ESLint**: Follow configured rules
-- **Prettier**: Consistent formatting
-- **Conventional Commits**: Use semantic commit messages
-
-## 📈 Monitoring & Analytics
 
 ### Performance Monitoring
 
-- **Core Web Vitals**: Monitored via Google Search Console
-- **Real User Monitoring**: Plausible/Umami analytics
-- **Error Tracking**: Console logging and error boundaries
+Monitor and analyze performance:
 
-### Business Metrics
+```bash
+npm run lighthouse
+npm run bundle-analyze
+```
 
-- **Service Conversions**: Payment processing webhooks
-- **Affiliate Performance**: Click-through and conversion tracking
-- **Content Engagement**: Page views, time on page, bounce rate
+## 🔍 Troubleshooting
 
-## 🔒 Security
+### Common Issues
 
-### Security Measures
+**Development Server Won't Start**
 
-- **Content Security Policy**: Strict CSP headers
-- **HTTPS Only**: Forced HTTPS with HSTS
-- **Input Sanitization**: MDX content sanitization
-- **Dependency Scanning**: Regular security audits
+```bash
+# Clear cache and restart
+rm -rf .astro node_modules/.cache
+npm install
+npm run dev
+```
 
-### Data Protection
+**Build Failures**
 
-- **No Client-side PII Storage**: Privacy-by-design architecture
-- **Secure Payment Processing**: PCI DSS compliant payment flows
-- **Encrypted Communications**: All data in transit encrypted
+```bash
+# Run diagnostics
+npm run type-check
+npm run lint
+npm run health-check
+```
 
-## 📞 Support
+**Content Sync Issues**
 
-### Documentation
+```bash
+# Validate content structure
+npm run content-check
+npm run link-check
+```
 
-- **Deployment Guide**: `DEPLOYMENT.md`
-- **Performance Optimization**: `PERFORMANCE_AUDIT_REPORT.md`
-- **Legal Compliance**: `LEGAL_COMPLIANCE_ASSESSMENT.md`
+### Getting Help
 
-### Contact
+1. Check the [CLAUDE.md](./CLAUDE.md) file for AI assistant guidance
+2. Review [PROJECT_MEMORY.md](./PROJECT_MEMORY.md) for current decisions and todos
+3. Run `npm run health-check` for automated diagnostics
+4. Review recent commits for breaking changes
+5. Check the development server logs for specific errors
 
-- **Technical Support**: support@mitm.life
-- **Legal/Privacy**: privacy@mitm.life
-- **Business Inquiries**: business@mitm.life
+## 🤖 AI Assistant Integration
 
-## 📄 License
+This project is optimized for use with Claude Code. See [CLAUDE.md](./CLAUDE.md) for:
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Development workflow guidelines
+- Context priming instructions
+- Task management best practices
+- Troubleshooting guides
 
-## 🙏 Acknowledgments
+Also see [PROJECT_MEMORY.md](./PROJECT_MEMORY.md) for current project state.
 
-- **Next.js Team**: For the amazing React framework
-- **Vercel**: For deployment and hosting solutions  
-- **Tailwind CSS**: For the utility-first CSS framework
-- **Contentlayer**: For content processing capabilities
-- **Open Source Community**: For the tools and libraries that make this possible
+## 📈 Performance Metrics
+
+The project maintains strict performance standards:
+
+- **Build Time**: < 30 seconds for full build
+- **Dev Server**: Hot reload < 500ms
+- **Lighthouse Scores**: >90 for all categories
+- **Bundle Size**: Monitored with automatic alerts
+- **Test Coverage**: Minimum 80% across all modules
+
+## 🔐 Security
+
+Security is built into every layer:
+
+- Automated vulnerability scanning with `npm audit`
+- Git hooks prevent committing secrets
+- Content validation prevents XSS
+- Regular dependency updates
+- HTTPS-only in production
 
 ---
 
-**Built with ❤️ for the cybersecurity community**
+## 📄 License
 
-*Last updated: August 20, 2025*# Trigger build Fri Aug 22 12:13:24 PM CDT 2025
-# Force deployment Fri Aug 22 12:24:27 PM CDT 2025
+This project is licensed under the MIT License. See LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [Astro](https://astro.build)
+- Content management via [Obsidian](https://obsidian.md)
+- Performance monitoring with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+- Quality assurance powered by comprehensive tooling
