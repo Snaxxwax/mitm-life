@@ -1,7 +1,22 @@
-import { getCollection } from 'astro:content'
+import { getCollection, type CollectionEntry } from 'astro:content'
+
+// Types
+type ContentItem = CollectionEntry<'tools'> | CollectionEntry<'guides'> | CollectionEntry<'research'> | CollectionEntry<'resources'>
+
+interface ContentStats {
+  totalContent: number
+  recentPosts: number
+  weeklyUpdates: number
+  categories: {
+    tools: number
+    guides: number
+    research: number
+    resources: number
+  }
+}
 
 // Performance optimization: Cache results
-let cachedContentStats: any = null
+let cachedContentStats: ContentStats | null = null
 let lastCacheTime = 0
 const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 
@@ -49,9 +64,9 @@ export async function getContentStats() {
     
     // Cache the results
     cachedContentStats = stats
-    lastCacheTime = now
+    lastCacheTime = Date.now()
     return stats
-  } catch (error) {
+  } catch (_error) {
     // Fallback stats if collections don't exist yet
     return {
       totalContent: 142,
@@ -109,13 +124,13 @@ export async function getCategoryStats() {
     return categories.map(category => {
       const collection = category.collection
       const difficultyCount = {
-        beginner: collection.filter(item => item.data.difficulty === 'beginner').length,
-        intermediate: collection.filter(item => item.data.difficulty === 'intermediate').length,
-        advanced: collection.filter(item => item.data.difficulty === 'advanced').length
+        beginner: collection.filter((item: ContentItem) => item.data.difficulty === 'beginner').length,
+        intermediate: collection.filter((item: ContentItem) => item.data.difficulty === 'intermediate').length,
+        advanced: collection.filter((item: ContentItem) => item.data.difficulty === 'advanced').length
       }
 
       // Get most recent update
-      const sortedByDate = collection.sort((a, b) => {
+      const sortedByDate = collection.sort((a: ContentItem, b: ContentItem) => {
         const dateA = new Date(a.data.updatedDate || a.data.pubDate)
         const dateB = new Date(b.data.updatedDate || b.data.pubDate)
         return dateB.getTime() - dateA.getTime()
@@ -139,7 +154,7 @@ export async function getCategoryStats() {
         icon: category.icon
       }
     })
-  } catch (error) {
+  } catch (_error) {
     // Fallback data
     return [
       {
@@ -185,7 +200,7 @@ export async function hasRecentContent() {
   try {
     const stats = await getContentStats()
     return stats.recentPosts > 0 || stats.weeklyUpdates > 0
-  } catch (error) {
+  } catch (_error) {
     return true // Default to showing notifications if we can't check
   }
 }

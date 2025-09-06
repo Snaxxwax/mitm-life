@@ -7,10 +7,16 @@ node_modules/
 out/
 dist/
 build/
+.astro/
 
 # Generated files
 .contentlayer/
 *.tsbuildinfo
+
+# Test outputs
+coverage/
+playwright-report/
+test-results/
 
 # Logs
 *.log
@@ -36,6 +42,12 @@ pnpm-lock.yaml
 # OS files
 .DS_Store
 Thumbs.db
+
+# Git hooks
+.husky/
+
+# GitHub workflow files (YAML formatting is strict)
+.github/
 
 # Static assets that shouldn't be reformatted
 public/

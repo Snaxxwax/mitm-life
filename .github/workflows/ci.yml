@@ -43,7 +43,7 @@ jobs:
         run: pnpm lint
 
       - name: Code formatting check
-        run: pnpm prettier --check .
+        run: pnpm format:check
 
       - name: Run tests
         run: pnpm test
@@ -74,26 +74,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build RSS feeds
-        run: pnpm feeds:generate
-
       - name: Build application
         run: pnpm build
-        env:
-          SITE_URL: https://mitm.life
-          NEXT_PUBLIC_ANALYTICS_PROVIDER: plausible
-          PLAUSIBLE_DOMAIN: mitm.life
-          NEXT_PUBLIC_PAYMENTS_TEST_MODE: false
 
       - name: Generate search index (Pagefind)
         run: |
-          npx pagefind --site out --glob "**/*.{html,htm}" --output-subdir pagefind
+          npx pagefind --site dist --glob "**/*.{html,htm}" --output-subdir pagefind
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-files
-          path: out/
+          path: dist/
           retention-days: 1
 
   # Security scanning
@@ -146,11 +138,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-files
-          path: out/
+          path: dist/
 
       - name: Serve static files
         run: |
-          npx serve out/ &
+          npx serve dist/ &
           sleep 5
         
       - name: Run Lighthouse CI
@@ -178,7 +170,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-files
-          path: out/
+          path: dist/
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -186,7 +178,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: mitm-life
-          directory: out
+          directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Purge Cloudflare cache
@@ -218,7 +210,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-files
-          path: out/
+          path: dist/
 
       - name: Deploy to Cloudflare Pages (Preview)
         uses: cloudflare/pages-action@v1
@@ -226,7 +218,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: mitm-life
-          directory: out
+          directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment PR with preview link

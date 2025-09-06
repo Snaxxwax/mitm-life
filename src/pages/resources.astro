@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import { Header } from '../components/Header';
+import { Header } from '../components/layout/Header';
+import '../styles/globals.css';
 import { SITE_TITLE } from '../consts';
 
 // Get all resources content
@@ -93,7 +94,6 @@ const sortedResources = resources.sort(
               ))}
             </div>
           ) : (
-            <!-- Empty State -->
             <div class="text-center py-20">
               <div class="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg class="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
