@@ -8,8 +8,8 @@ Always update this file after each coding session with Claude Code (Agent mode).
 ## 📌 Project Overview
 | Field | Value |
 |------|-------|
-| **Project Name** | *[Fill in]* |
-| **Goal** | *[One-sentence project description]* |
+| **Project Name** | **MITM.life - Cybersecurity Blog** |
+| **Goal** | A modern cybersecurity blog focused on security research, tools, and analysis with content management via Obsidian |
 | **Stack** | Frontend: **Astro** · Hosting: **Cloudflare Pages** · CI: **GitHub Actions** |
 | **Agents & Tools** | Agent: **Claude Code** (context window: **7**) · Tools: **Playwright**, **filesystem**, **git hooks** |
 
@@ -18,12 +18,12 @@ Always update this file after each coding session with Claude Code (Agent mode).
 ## 🗂️ Architecture & Structure
 | Category | Choice |
 |----------|--------|
-| **Folder Layout** | `/src`, `/public`, `/src/pages`, `/src/components`, `/src/layouts`, `/tests/e2e`, `/docs` |
-| **Frontend Framework** | Astro (with optional integrations: React/Vue/Svelte as needed) |
-| **Server/Edge** | Cloudflare Pages (optional Workers/functions for API) |
-| **Styling** | *[TailwindCSS / UnoCSS / Vanilla]* |
-| **Testing** | Playwright (E2E) |
-| **Other Libraries** | *[Wrangler for CF, ESLint, Prettier, Husky, lint-staged]* |
+| **Folder Layout** | `/src`, `/public`, `/src/pages`, `/src/components`, `/src/layouts`, `/tests/e2e`, `/docs`, `/obsidian-vault` |
+| **Frontend Framework** | Astro with React integration for interactive components |
+| **Server/Edge** | Cloudflare Pages (with content loaded from Obsidian vault) |
+| **Styling** | TailwindCSS with shadcn/ui components and dark theme |
+| **Testing** | Playwright (E2E), Vitest (unit tests), accessibility testing with @axe-core/playwright |
+| **Other Libraries** | astro-loader-obsidian, ESLint, Prettier, Husky, lint-staged, TypeScript |
 
 ---
 
@@ -41,44 +41,58 @@ Always update this file after each coding session with Claude Code (Agent mode).
 ## 📝 Decisions Log
 | Date | Decision |
 |------|----------|
-| YYYY-MM-DD | Use **Astro** with **Cloudflare Pages** deployment via GitHub Actions |
-| YYYY-MM-DD | Add **Playwright** for E2E; record traces on CI |
-| YYYY-MM-DD | Enable **Husky** + **lint-staged**; enforce Prettier & ESLint |
+| 2025-01-06 | Use **Astro** with **Cloudflare Pages** deployment via GitHub Actions |
+| 2025-01-06 | Add **Playwright** for E2E; record traces on CI |
+| 2025-01-06 | Enable **Husky** + **lint-staged**; enforce Prettier & ESLint |
+| 2025-01-06 | Use **Obsidian vault** for content management with astro-loader-obsidian |
+| 2025-01-06 | Focus on **WiFi security** as initial content area |
+| 2025-01-06 | Implement **TailwindCSS + shadcn/ui** for component library |
 
 ---
 
 ## ✅ Completed Features
 | Date | Feature |
 |------|---------|
-| YYYY-MM-DD | Initialize Astro project & base pages |
-| YYYY-MM-DD | Add Playwright E2E test for homepage |
-| YYYY-MM-DD | Configure GitHub Actions CI (build + test) |
-| YYYY-MM-DD | Cloudflare Pages deploy from `main` |
+| 2025-01-06 | Initialize Astro project & base pages |
+| 2025-01-06 | Add Obsidian integration for content collections (guides, tools, research, resources) |
+| 2025-01-06 | Implement comprehensive UI with TailwindCSS and React components |
+| 2025-01-06 | Set up complete testing suite (Playwright E2E, Vitest unit tests, accessibility) |
+| 2025-01-06 | Configure build tooling (ESLint, Prettier, TypeScript, git hooks) |
+| 2025-01-06 | Add WiFi security content (5 guides, 1 tool documentation) |
+| 2025-01-06 | Create homepage with hero, categories, recent posts, newsletter signup |
+| 2025-01-06 | Configure GitHub Actions CI (build + test) |
 
 ---
 
 ## 🚧 Open TODOs
 | Status | Task | Notes |
 |--------|------|-------|
-| ⬜ | Add site layout + navigation | `/src/layouts/Base.astro` |
+| ⬜ | Deploy to Cloudflare Pages | Set up production deployment |
+| ⬜ | Fix remaining ESLint issues | 5 accessibility and React issues remaining |
+| ⬜ | Expand content beyond WiFi security | Add network analysis, malware research, etc. |
 | ⬜ | Configure analytics & SEO | robots, sitemap, meta tags |
-| ⬜ | Add preview deploys for PRs | Cloudflare Pages previews |
-| ⬜ | Add smoke E2E (Playwright) | run on pre-commit (fast) |
+| ⬜ | Add RSS feed generation | Leverage @astrojs/rss integration |
+| ⬜ | Performance optimization | Run Lighthouse, optimize bundle |
 
 ---
 
 ## 🐞 Known Issues / Bugs
 | Date | Issue | Status |
 |------|-------|--------|
-| YYYY-MM-DD | *[example]* Flaky E2E on CI (slow network) | Open |
+| 2025-01-06 | ESLint: 5 remaining accessibility and React rules violations | Open |
+| 2025-01-06 | Tests: Playwright E2E tests need to be run and validated | Open |
 
 ---
 
 ## 🔄 Changelog
 | Date | Type | Scope | Description |
 |------|------|-------|-------------|
-| 2025-09-03 | feat | init | Scaffold Astro + CI + CF Pages wiring |
-| YYYY-MM-DD | test | e2e | Add Playwright smoke tests |
+| 2025-01-06 | feat | init | Restructure project with modern Astro cybersecurity blog |
+| 2025-01-06 | feat | content | Add Obsidian integration for content management |
+| 2025-01-06 | feat | ui | Implement TailwindCSS + shadcn/ui component library |
+| 2025-01-06 | feat | testing | Set up comprehensive testing suite (Playwright + Vitest) |
+| 2025-01-06 | feat | content | Add WiFi security content (5 guides, 1 tool) |
+| 2025-01-06 | fix | lint | Configure ESLint for mixed environments |
 
 ---
 
