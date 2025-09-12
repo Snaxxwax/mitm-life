@@ -1,107 +1,53 @@
-# CLAUDE.md
+# 🤖 CLAUDE.md — Project Assistant Guide
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Role
 
-## Project Overview
+You are my engineering partner, working on this **Astro → GitHub → Cloudflare** project.  
+Always: **Clarify → Plan → Implement → Verify → Commit → Update Memory → Next Steps**.
 
-This is **mitm.life** - a static blog focused on OSINT (Open Source Intelligence) and cybersecurity research built with Next.js, Contentlayer, and TailwindCSS. The project has one main monetization surface: an affiliate tool hub (/tools).
+## Context Rules
 
-## Development Commands
+- Load `/PROJECT_MEMORY.md` at session start, summarize into working context (limit: 7).
+- Use `/PROJECT_KICKOFF.md` only when re-bootstrapping the project.
+- Keep responses **structured, concise, and actionable**.
 
-### Setup & Installation
-```bash
-pnpm install
-```
+## Tools
 
-### Development
-```bash
-pnpm dev                    # Start development server
-```
+- **Filesystem**: for file edits (idempotent, file-scoped).
+- **Playwright**: for E2E testing (`tests/e2e`).
+- **Git Hooks**: Husky pre-commit runs format + smoke test.
+- **CI/CD**: GitHub Actions → Cloudflare Pages.
 
-### Build & Export
-```bash
-pnpm build                  # Build the application
-pnpm export                 # Export static files
-pnpm typecheck             # Run TypeScript type checking
-pnpm lint                  # Run ESLint
-```
+## Coding Guidelines
 
-### Content Management
-```bash
-pnpm feeds:generate        # Generate RSS/Atom/JSON feeds
-pnpm new:post "Title" --slug  # Create new post
-```
+- Use Conventional Commits for messages.
+- Keep changes small and testable.
+- Add/update Playwright smoke tests for new features.
+- Update `/PROJECT_MEMORY.md` after each change:
+  - Decisions
+  - Completed Features
+  - TODOs
+  - Changelog
 
-## Project Architecture
+## Session Flow
 
-### Core Technologies
-- **Next.js 14+** with App Router for static site generation
-- **Contentlayer** for MDX content management and type safety
-- **TailwindCSS + shadcn/ui** for styling
-- **TypeScript** in strict mode
-- **Pagefind** for static search functionality
-- **Shiki** for code syntax highlighting
+1. Load context → `/PROJECT_MEMORY.md`.
+2. Clarify task or TODO.
+3. Plan steps before coding.
+4. Edit files via filesystem tool.
+5. Run tests (Playwright).
+6. Propose commit message + update `/PROJECT_MEMORY.md`.
+7. Suggest 2–3 next steps.
 
-### Content Structure
-- **Posts**: `/content/posts/*.mdx` - Blog posts with rich frontmatter
-- **Pages**: `/content/pages/*.mdx` - Static pages (About, Contact, etc.)
-- **Authors**: `/content/authors/*.yml` - Author metadata
+## Tools
 
-- **Tools**: `/data/tools.yml` - Affiliate tool definitions
-
-### Key Components
-
-- `AffiliateCard` - Tool display cards
-- `GoRedirect` - Cloaked affiliate redirect handler
-- `LegalDisclosure` - Compliance and disclaimer component
-
-### Routing Structure
-- `/` - Homepage with latest posts and search
-- `/research` - Long-form OSINT analyses
-- `/guides` - How-to content and playbooks
-- `/notes` - Short field notes
-- `/tools` - Affiliate hub with filtering
-
-- `/go/[slug]` - Cloaked affiliate redirects (noindex)
-- `/tags/[tag]` - Tag taxonomy pages
-- `/categories/[category]` - Category taxonomy pages
-
-### Configuration Files
-- `site.config.ts` - Site metadata, analytics, payment providers, affiliate settings
-- `contentlayer.config.ts` - Content schema definitions
-- `next.config.mjs` - Next.js configuration for static export
-- `tsconfig.json` - TypeScript configuration with strict mode
-
-### Monetization Integration
-- **Payment providers**: Stripe and LemonSqueezy support
-- **Webhook integration**: N8N webhook for order processing
-- **Affiliate tracking**: UTM parameter injection and click tracking
-- **Test mode**: Configurable via NEXT_PUBLIC_PAYMENTS_TEST_MODE
-
-### Security & SEO Features
-- CSP headers via next-safe
-- Structured data (Article, BreadcrumbList, WebSite)
-- Social OG images via @vercel/og
-- RSS/Atom/JSON feeds
-- Sitemap and robots.txt generation
-- Privacy-first analytics (Plausible/Umami)
-
-### Content Features
-- MDX shortcodes: Callout, YouTube, Mermaid, Figure, Source
-- Reading time calculation
-- Table of contents generation
-- Dark theme with toggle
-- Comment system via Giscus
-- Footnote support
-- Anchor links for headings
-
-## Development Notes
-
-### File Organization
-The project uses a flat structure in the mitm/ directory with components, configuration, and content management files at the root level. TypeScript path mapping is configured with `@/*` pointing to `./src/*`.
-
-### Static Export Only
-This project is configured for static export only and deploys to Cloudflare Pages. All features must work without server-side runtime.
-
-### Environment Variables
-Key environment variables are documented in the project. Check `site.config.ts` for runtime configuration and ensure `.env` file contains necessary API keys for payment processing and webhooks.
+- **Filesystem**: for file edits (idempotent, file-scoped).
+- **Playwright**: for E2E testing (`tests/e2e`).
+- **Git Hooks**: Husky pre-commit runs format + smoke test.
+- **CI/CD**: GitHub Actions → Cloudflare Pages.
+- **Agents**: Use specialized agents as needed to enhance context and understanding:
+  - `general-purpose`: Complex research, multi-step tasks, keyword searches
+  - `frontend-developer`: UI components, React/Astro development, responsive design
+  - `backend-architect`: API design, database optimization, server architecture
+  - `test-writer-fixer`: Test creation, running tests, fixing test failures
+  - `devops-automator`: CI/CD pipelines, deployment automation, infrastructure

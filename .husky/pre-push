@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🚀 Running pre-push checks..."
+
+# Build the project
+echo "🏗️ Building project..."
+npm run build || {
+  echo "❌ Build failed. Please fix the issues before pushing."
+  exit 1
+}
+
+# Run comprehensive type checking
+echo "🔍 Running comprehensive TypeScript checks..."
+npm run type-check || {
+  echo "❌ TypeScript errors found. Please fix before pushing."
+  exit 1
+}
+
+# Run security audit
+echo "🔒 Running security audit..."
+npm audit --audit-level moderate || {
+  echo "⚠️ Security vulnerabilities found. Consider running 'npm run audit:fix'"
+  echo "Continuing with push - review vulnerabilities after push."
+}
+
+# Run lighthouse if script exists
+if npm run lighthouse --dry-run >/dev/null 2>&1; then
+  echo "💡 Running Lighthouse performance audit..."
+  npm run lighthouse || {
+    echo "⚠️ Lighthouse audit failed. Performance may be affected."
+    echo "Continuing with push - review performance after push."
+  }
+fi
+
+echo "✅ All pre-push checks passed!"

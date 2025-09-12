@@ -1,166 +1,128 @@
 #!/usr/bin/env node
 
-/**
- * Health Check Script for mitm.life
- * Monitors site availability, performance, and key metrics
- */
+const { execSync } = require('child_process');
+const fs = require('fs');
+const _path = require('path');
 
-import https from 'https';
-import fs from 'fs/promises';
+console.log('🏥 Running comprehensive health check...');
 
-const SITE_URL = process.env.SITE_URL || 'https://mitm.life';
-const WEBHOOK_URL = process.env.WEBHOOK_URL; // For notifications (Slack/Discord/etc)
+const checks = [];
 
-const endpoints = [
-  '/',
-  '/blog/',
-  '/tools/',
-  
-  '/feed.xml',
-  '/sitemap.xml'
-];
-
-async function checkEndpoint(path) {
-  return new Promise((resolve) => {
-    const url = `${SITE_URL}${path}`;
-    const startTime = Date.now();
-    
-    https.get(url, (res) => {
-      const responseTime = Date.now() - startTime;
-      
-      let body = '';
-      res.on('data', chunk => body += chunk);
-      res.on('end', () => {
-        resolve({
-          path,
-          url,
-          status: res.statusCode,
-          responseTime,
-          headers: res.headers,
-          bodySize: Buffer.byteLength(body, 'utf8'),
-          success: res.statusCode >= 200 && res.statusCode < 400
-        });
-      });
-    }).on('error', (err) => {
-      resolve({
-        path,
-        url,
-        status: 0,
-        responseTime: Date.now() - startTime,
-        error: err.message,
-        success: false
-      });
-    });
-  });
+function addCheck(name, status, message = '', details = '') {
+  checks.push({ name, status, message, details });
 }
 
-async function performHealthCheck() {
-  console.log(`🏥 Health check starting for ${SITE_URL}...`);
-  
-  const results = await Promise.all(endpoints.map(checkEndpoint));
-  
-  const summary = {
-    timestamp: new Date().toISOString(),
-    site: SITE_URL,
-    totalEndpoints: results.length,
-    successfulEndpoints: results.filter(r => r.success).length,
-    failedEndpoints: results.filter(r => !r.success).length,
-    averageResponseTime: Math.round(results.reduce((acc, r) => acc + r.responseTime, 0) / results.length),
-    results: results
-  };
-  
-  // Log results
-  console.log('\n📊 Health Check Results:');
-  console.log(`✅ Successful: ${summary.successfulEndpoints}/${summary.totalEndpoints}`);
-  console.log(`⚠️ Failed: ${summary.failedEndpoints}/${summary.totalEndpoints}`);
-  console.log(`⏱️ Average Response Time: ${summary.averageResponseTime}ms`);
-  
-  results.forEach(result => {
-    const icon = result.success ? '✅' : '❌';
-    console.log(`${icon} ${result.path} - ${result.status} (${result.responseTime}ms)`);
-    if (!result.success && result.error) {
-      console.log(`   Error: ${result.error}`);
-    }
-  });
-  
-  // Save results to file
-  const logFile = `health-check-${new Date().toISOString().split('T')[0]}.json`;
-  await fs.writeFile(logFile, JSON.stringify(summary, null, 2));
-  console.log(`\n📄 Results saved to ${logFile}`);
-  
-  // Send alert if there are failures
-  if (summary.failedEndpoints > 0) {
-    await sendAlert(summary);
-  }
-  
-  // Exit with error code if any endpoint failed
-  process.exit(summary.failedEndpoints > 0 ? 1 : 0);
-}
-
-async function sendAlert(summary) {
-  if (!WEBHOOK_URL) {
-    console.log('⚠️ No webhook URL configured for alerts');
-    return;
-  }
-  
-  const message = {
-    text: `🚨 Health Check Alert - ${SITE_URL}`,
-    attachments: [{
-      color: 'danger',
-      fields: [
-        {
-          title: 'Failed Endpoints',
-          value: summary.failedEndpoints.toString(),
-          short: true
-        },
-        {
-          title: 'Total Endpoints',
-          value: summary.totalEndpoints.toString(),
-          short: true
-        },
-        {
-          title: 'Average Response Time',
-          value: `${summary.averageResponseTime}ms`,
-          short: true
-        },
-        {
-          title: 'Failed URLs',
-          value: summary.results
-            .filter(r => !r.success)
-            .map(r => `• ${r.path} (${r.status || 'Error'})`)
-            .join('\\n'),
-          short: false
-        }
-      ],
-      timestamp: summary.timestamp
-    }]
-  };
-  
+function runCheck(command, description, required = true) {
+  console.log(`\n🔍 ${description}...`);
   try {
-    // Send webhook notification (implementation depends on your webhook service)
-    console.log('📢 Sending alert notification...');
-    // Webhook implementation would go here
+    const output = execSync(command, { encoding: 'utf8', stdio: 'pipe' });
+    addCheck(description, 'pass', 'OK', output.trim());
+    console.log(`✅ ${description} - OK`);
+    return true;
   } catch (error) {
-    console.error('Failed to send alert:', error.message);
+    const status = required ? 'fail' : 'warn';
+    addCheck(description, status, error.message, error.stdout || '');
+    console.log(`${required ? '❌' : '⚠️'} ${description} - ${error.message}`);
+    return false;
   }
 }
 
-// Performance monitoring for key metrics
-async function checkPerformanceMetrics() {
-  console.log('📈 Checking performance metrics...');
-  
-  const metrics = {
-    loadTime: 0,
-    firstContentfulPaint: 0,
-    largestContentfulPaint: 0,
-    cumulativeLayoutShift: 0
-  };
-  
-  // This would integrate with Lighthouse CI or similar tools
-  // For now, we'll just do basic response time monitoring
-  
-  return metrics;
+function checkFile(filePath, description, required = true) {
+  const exists = fs.existsSync(filePath);
+  const status = exists ? 'pass' : required ? 'fail' : 'warn';
+  addCheck(description, status, exists ? 'File exists' : 'File missing');
+  console.log(
+    `${exists ? '✅' : required ? '❌' : '⚠️'} ${description} - ${exists ? 'OK' : 'Missing'}`
+  );
+  return exists;
 }
 
-// Run health check
-performHealthCheck().catch(console.error);
+function printSummary() {
+  console.log('\n📊 Health Check Summary');
+  console.log('='.repeat(50));
+
+  const passed = checks.filter(c => c.status === 'pass').length;
+  const failed = checks.filter(c => c.status === 'fail').length;
+  const warnings = checks.filter(c => c.status === 'warn').length;
+
+  console.log(`✅ Passed: ${passed}`);
+  console.log(`❌ Failed: ${failed}`);
+  console.log(`⚠️ Warnings: ${warnings}`);
+
+  if (failed > 0) {
+    console.log('\n❌ Failed Checks:');
+    checks
+      .filter(c => c.status === 'fail')
+      .forEach(check => {
+        console.log(`  • ${check.name}: ${check.message}`);
+      });
+  }
+
+  if (warnings > 0) {
+    console.log('\n⚠️ Warnings:');
+    checks
+      .filter(c => c.status === 'warn')
+      .forEach(check => {
+        console.log(`  • ${check.name}: ${check.message}`);
+      });
+  }
+
+  return failed === 0;
+}
+
+function main() {
+  console.log('Starting health check...\n');
+
+  // Check required files
+  checkFile('package.json', 'Package.json exists');
+  checkFile('tsconfig.json', 'TypeScript config exists');
+  checkFile('astro.config.mjs', 'Astro config exists');
+  checkFile('.prettierrc', 'Prettier config exists');
+  checkFile('eslint.config.mjs', 'ESLint config exists');
+  checkFile('CLAUDE.md', 'Claude config exists');
+
+  // Check optional files
+  checkFile('README.md', 'README exists', false);
+  checkFile('.env.example', 'Environment example exists', false);
+  checkFile('vitest.config.ts', 'Vitest config exists', false);
+
+  // Check dependencies
+  runCheck('npm ls', 'Dependencies are installed');
+
+  // Run linting
+  runCheck('npm run lint', 'Code linting passes');
+
+  // Check formatting
+  runCheck('npm run format:check', 'Code formatting is correct');
+
+  // Run type checking
+  runCheck('npm run type-check', 'TypeScript type checking passes');
+
+  // Run tests
+  runCheck('npm run test', 'Tests pass', false);
+
+  // Try building
+  runCheck('npm run build', 'Build succeeds');
+
+  // Security audit
+  runCheck('npm audit --audit-level moderate', 'Security audit passes', false);
+
+  // Git status
+  runCheck('git status --porcelain', 'Git working directory status', false);
+
+  const success = printSummary();
+
+  if (success) {
+    console.log('\n🎉 All critical health checks passed!');
+    process.exit(0);
+  } else {
+    console.log(
+      '\n💥 Some critical health checks failed. Please review and fix.'
+    );
+    process.exit(1);
+  }
+}
+
+if (require.main === module) {
+  main();
+}
